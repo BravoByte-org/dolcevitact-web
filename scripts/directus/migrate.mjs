@@ -85,7 +85,19 @@ if (!ADMIN_TOKEN) {
 async function api(method, path, body) {
 	if (DRY_RUN && method !== 'GET') {
 		console.log(`  [dry-run] ${method} ${path}`, body ? JSON.stringify(body).slice(0, 200) : '');
-		return { data: null };
+		// Return a stub entity so downstream code that consumes the response
+		// (e.g. `const r = await api(...); r.data.id`) doesn't crash and we
+		// walk through every migration step during a dry-run.
+		//
+		// Use real UUIDs (not prefixed strings) because later GETs filter on
+		// these ids against UUID columns in Postgres — e.g.
+		// `site_users.sites_id = $1` fails with "invalid input syntax for
+		// type uuid" if we hand it "dry-run-<uuid>". The `[dry-run]` log
+		// prefix above already makes provenance obvious.
+		//
+		// In a real run this branch is never taken; the Directus response is
+		// returned verbatim below.
+		return { data: { id: randomUUID(), token: `dolcevita_dryrun_${randomUUID()}` } };
 	}
 
 	const res = await fetch(`${DIRECTUS_URL}${path}`, {
@@ -202,6 +214,18 @@ async function upsertRelation(def) {
 	}
 }
 
+// System collections aren't exposed under /items/* — they have their own
+// dedicated REST endpoints. Route GETs accordingly so this helper works
+// for both user-defined and system collections.
+const SYSTEM_COLLECTION_ENDPOINTS = {
+	directus_users: '/users',
+	directus_roles: '/roles',
+	directus_policies: '/policies',
+	directus_permissions: '/permissions',
+	directus_files: '/files',
+	directus_folders: '/folders'
+};
+
 /** Find the first item matching a filter, or null. */
 async function findOne(collection, filter, fields = ['id']) {
 	const qs = new URLSearchParams({
@@ -209,7 +233,8 @@ async function findOne(collection, filter, fields = ['id']) {
 		fields: fields.join(','),
 		limit: '1'
 	});
-	const r = await api('GET', `/items/${collection}?${qs}`);
+	const base = SYSTEM_COLLECTION_ENDPOINTS[collection] ?? `/items/${collection}`;
+	const r = await api('GET', `${base}?${qs}`);
 	return r.data?.[0] ?? null;
 }
 
@@ -456,7 +481,7 @@ const COLLECTIONS = [
 			fStr('eyebrow', { note: 'Small caps label above the section heading.' }),
 			fStr('title', { required: true, note: 'Section heading.' }),
 			fText('subtitle', { note: 'Optional paragraph under the heading.' }),
-			fInt('sort', { hidden: true, sort: true }),
+			fInt('sort', { hidden: true }),
 			{
 				field: 'site',
 				type: 'uuid',
@@ -495,7 +520,7 @@ const COLLECTIONS = [
 			},
 			fStr('question', { required: true, max: 500 }),
 			fHtml('answer_html', { note: 'Rich-text answer body.' }),
-			fInt('sort', { hidden: true, sort: true })
+			fInt('sort', { hidden: true })
 		]
 	},
 	{
@@ -524,7 +549,7 @@ const COLLECTIONS = [
 			fStr('cta_anchor', {
 				note: 'Hash or path target for the CTA (e.g. "#rsvp").'
 			}),
-			fInt('sort', { hidden: true, sort: true }),
+			fInt('sort', { hidden: true }),
 			{
 				field: 'site',
 				type: 'uuid',
@@ -555,7 +580,7 @@ const COLLECTIONS = [
 			fStr('success_title', { required: true, note: 'Shown after a successful submit.' }),
 			fText('success_body', { note: 'Body shown beneath success_title.' }),
 			fText('consent_copy', { note: 'Small-print consent line under the submit button.' }),
-			fInt('sort', { hidden: true, sort: true }),
+			fInt('sort', { hidden: true }),
 			{
 				field: 'site',
 				type: 'uuid',
