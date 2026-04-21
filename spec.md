@@ -2,7 +2,7 @@
 
 > **Owner:** BravoByteLLC for Dolce Vita CT
 > **Domain:** https://dolcevitact.com
-> **Status:** M0 Foundation — scaffold complete, content pipeline pending
+> **Status:** M3 Design system — tokens + decoratives in review (PR #16); M0/M1 PRs open; Directus + Vercel handoffs pending
 > **Last Updated:** April 21, 2026
 
 This is the single source of truth for what `dolcevitact-web` is, why it exists,
@@ -79,9 +79,9 @@ The homepage is a single Directus `pages` row composed of M2A blocks:
 | --- | ------------------------ | ----------- | ------------------------------------------------------------------ | ---------------------------------------------- |
 | M-1 | GitHub workspace         | done        | —                                                                  | Repo, labels, templates, board, epics, stories |
 | M0  | Foundation               | in progress | [#1](https://github.com/BravoByte-org/dolcevitact-web/milestone/1) | Scaffold + Directus site row + Vercel + DNS    |
-| M1  | Shared content contracts | planned     | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension                   |
-| M2  | Directus schema          | planned     | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Collections + permissions + seed               |
-| M3  | Design system            | planned     | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, typography, grain                      |
+| M1  | Shared content contracts | in review   | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension (types PR #2)     |
+| M2  | Directus schema          | blocked     | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Needs Directus admin handoff                   |
+| M3  | Design system            | in review   | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16, stacked)  |
 | M4  | Sections                 | planned     | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | 9 sections + nav + footer                      |
 | M5  | RSVP                     | planned     | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | Form action + Resend                           |
 | M6  | Launch                   | planned     | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | SEO, a11y, deploy                              |
