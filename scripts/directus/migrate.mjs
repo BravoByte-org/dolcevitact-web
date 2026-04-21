@@ -87,10 +87,17 @@ async function api(method, path, body) {
 		console.log(`  [dry-run] ${method} ${path}`, body ? JSON.stringify(body).slice(0, 200) : '');
 		// Return a stub entity so downstream code that consumes the response
 		// (e.g. `const r = await api(...); r.data.id`) doesn't crash and we
-		// walk through every migration step during a dry-run. In a real run
-		// this branch is never taken; the Directus response is returned
-		// verbatim below.
-		return { data: { id: `dry-run-${randomUUID()}`, token: `dry-run-${randomUUID()}` } };
+		// walk through every migration step during a dry-run.
+		//
+		// Use real UUIDs (not prefixed strings) because later GETs filter on
+		// these ids against UUID columns in Postgres — e.g.
+		// `site_users.sites_id = $1` fails with "invalid input syntax for
+		// type uuid" if we hand it "dry-run-<uuid>". The `[dry-run]` log
+		// prefix above already makes provenance obvious.
+		//
+		// In a real run this branch is never taken; the Directus response is
+		// returned verbatim below.
+		return { data: { id: randomUUID(), token: `dolcevita_dryrun_${randomUUID()}` } };
 	}
 
 	const res = await fetch(`${DIRECTUS_URL}${path}`, {
