@@ -17,10 +17,10 @@
 <section class="dv-cta">
 	<div class="dv-cta__inner">
 		{#if data.eyebrow}
-			<p class="dv-eyebrow">{data.eyebrow}</p>
+			<p class="dv-cta__eyebrow dv-eyebrow">{data.eyebrow}</p>
 		{/if}
 		{#if data.title}
-			<h2 class="dv-h2 mt-3 text-balance">{data.title}</h2>
+			<h2 class="dv-cta__title dv-h2">{data.title}</h2>
 		{/if}
 
 		<div class="dv-cta__rule">
@@ -28,7 +28,7 @@
 		</div>
 
 		{#if data.subtitle}
-			<p class="dv-lede mx-auto mt-6 text-balance">{data.subtitle}</p>
+			<p class="dv-cta__subtitle dv-lede">{data.subtitle}</p>
 		{/if}
 
 		<div class="dv-cta__actions">
@@ -42,57 +42,59 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-cta {
 		padding: clamp(3.5rem, 9vw, 6rem) 1.5rem;
 	}
 
 	.dv-cta__inner {
-		margin-inline: auto;
-		max-width: 42rem;
-		text-align: center;
+		@apply mx-auto max-w-[42rem] text-center;
+	}
+
+	.dv-cta__title {
+		@apply mt-3 text-balance;
 	}
 
 	.dv-cta__rule {
-		margin-top: 1.5rem;
+		@apply mt-6;
+	}
+
+	.dv-cta__subtitle {
+		@apply mx-auto mt-6 text-balance;
 	}
 
 	.dv-cta__actions {
-		margin-top: 2rem;
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
-		justify-content: center;
+		@apply mt-8 flex flex-wrap justify-center gap-4;
 	}
 
 	.dv-cta__primary,
 	.dv-cta__secondary {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.85rem 1.75rem;
-		font-family: var(--dv-font-sans);
-		font-size: 0.8rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		border-radius: var(--dv-radius-pill, 999px);
+		@apply inline-flex items-center rounded-full px-7 py-[0.85rem] font-sans text-[0.8rem] tracking-[0.14em] uppercase;
 		transition:
 			background-color var(--dv-duration-base) var(--dv-ease-soft),
 			color var(--dv-duration-base) var(--dv-ease-soft);
+
+		&:focus-visible {
+			@apply outline-terracotta-deep outline-2 outline-offset-4;
+		}
 	}
 
 	.dv-cta__primary {
-		background: var(--dv-color-terracotta);
-		color: var(--dv-color-ivory);
-	}
-	.dv-cta__primary:hover {
-		background: var(--dv-color-terracotta-deep);
+		@apply bg-terracotta text-ivory;
+
+		&:hover {
+			@apply bg-terracotta-deep;
+		}
 	}
 
 	.dv-cta__secondary {
+		@apply text-charcoal;
 		border: 1px solid color-mix(in srgb, var(--dv-color-charcoal) 30%, transparent);
-		color: var(--dv-color-charcoal);
-	}
-	.dv-cta__secondary:hover {
-		background: color-mix(in srgb, var(--dv-color-charcoal) 5%, transparent);
+
+		&:hover {
+			background: color-mix(in srgb, var(--dv-color-charcoal) 5%, transparent);
+		}
 	}
 </style>

@@ -29,10 +29,10 @@
 <section class="dv-gallery">
 	<div class="dv-gallery__inner">
 		{#if data.title}
-			<h2 class="dv-h2 text-center">{data.title}</h2>
+			<h2 class="dv-gallery__title dv-h2">{data.title}</h2>
 		{/if}
 		{#if data.subtitle}
-			<p class="dv-lede mx-auto mt-4 text-center text-balance">{data.subtitle}</p>
+			<p class="dv-gallery__subtitle dv-lede">{data.subtitle}</p>
 		{/if}
 
 		{#if items.length > 0}
@@ -40,8 +40,8 @@
 				{#each items as item, i (item.id ?? i)}
 					{#if item.src}
 						<li class="dv-gallery__cell">
-							<figure>
-								<img src={item.src} alt={item.alt ?? ''} loading="lazy" />
+							<figure class="dv-gallery__figure">
+								<img src={item.src} alt={item.alt ?? ''} loading="lazy" class="dv-gallery__img" />
 								{#if item.caption}
 									<figcaption class="dv-gallery__caption">{item.caption}</figcaption>
 								{/if}
@@ -54,38 +54,35 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-gallery {
 		padding: clamp(3rem, 8vw, 5rem) 1.5rem;
 	}
 
 	.dv-gallery__inner {
-		margin-inline: auto;
-		max-width: 72rem;
+		@apply mx-auto max-w-[72rem];
+	}
+
+	.dv-gallery__title {
+		@apply text-center;
+	}
+
+	.dv-gallery__subtitle {
+		@apply mx-auto mt-4 text-center text-balance;
 	}
 
 	.dv-gallery__grid {
-		margin-top: 2.5rem;
-		display: grid;
-		gap: 1rem;
+		@apply mt-10 grid list-none gap-4 p-0;
 		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-		list-style: none;
-		padding: 0;
 	}
 
-	.dv-gallery__cell img {
-		display: block;
-		width: 100%;
-		height: auto;
-		border-radius: var(--dv-radius-md, 0.75rem);
-		box-shadow: var(--dv-shadow-soft);
+	.dv-gallery__img {
+		@apply shadow-soft block h-auto w-full rounded-md;
 	}
 
 	.dv-gallery__caption {
-		margin-top: 0.5rem;
-		font-family: var(--dv-font-sans);
-		font-size: 0.8rem;
-		color: var(--dv-color-charcoal-mute);
-		text-align: center;
+		@apply text-charcoal-mute mt-2 text-center font-sans text-[0.8rem];
 	}
 </style>

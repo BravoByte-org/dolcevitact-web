@@ -26,16 +26,16 @@
 	<div class="dv-faq__inner">
 		<header class="dv-faq__header">
 			{#if data.eyebrow}
-				<p class="dv-eyebrow">{data.eyebrow}</p>
+				<p class="dv-faq__eyebrow dv-eyebrow">{data.eyebrow}</p>
 			{/if}
 			{#if data.title}
-				<h2 class="dv-h2 mt-3">{data.title}</h2>
+				<h2 class="dv-faq__title dv-h2">{data.title}</h2>
 			{/if}
 			<div class="dv-faq__rule">
 				<GoldRule size="sm" />
 			</div>
 			{#if data.subtitle}
-				<p class="dv-lede mx-auto mt-4 text-balance">{data.subtitle}</p>
+				<p class="dv-faq__subtitle dv-lede">{data.subtitle}</p>
 			{/if}
 		</header>
 
@@ -43,7 +43,7 @@
 			<ul class="dv-faq__list">
 				{#each items as item, i (item.id ?? i)}
 					<li class="dv-faq__item">
-						<details>
+						<details class="dv-faq__details">
 							<summary class="dv-faq__q">
 								<span>{item.question}</span>
 								<span aria-hidden="true" class="dv-faq__chevron">+</span>
@@ -63,29 +63,35 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-faq {
 		padding: clamp(3.5rem, 9vw, 6rem) 1.5rem;
 	}
 
 	.dv-faq__inner {
-		margin-inline: auto;
-		max-width: 42rem;
+		@apply mx-auto max-w-[42rem];
 	}
 
 	.dv-faq__header {
-		text-align: center;
-		margin-bottom: 2.5rem;
+		@apply mb-10 text-center;
+	}
+
+	.dv-faq__title {
+		@apply mt-3;
 	}
 
 	.dv-faq__rule {
-		margin-top: 1.25rem;
+		@apply mt-5;
+	}
+
+	.dv-faq__subtitle {
+		@apply mx-auto mt-4 text-balance;
 	}
 
 	.dv-faq__list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
+		@apply m-0 list-none p-0;
 		border-top: 1px solid color-mix(in srgb, var(--dv-color-charcoal) 8%, transparent);
 	}
 
@@ -94,37 +100,28 @@
 	}
 
 	.dv-faq__q {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		padding: 1.25rem 0.25rem;
-		cursor: pointer;
-		font-family: var(--dv-font-display);
-		font-size: 1.15rem;
-		color: var(--dv-color-charcoal);
-		list-style: none;
-	}
+		@apply text-charcoal font-display flex cursor-pointer list-none items-center justify-between gap-4 px-1 py-5 text-[1.15rem];
 
-	.dv-faq__q::-webkit-details-marker {
-		display: none;
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&:focus-visible {
+			@apply outline-terracotta-deep outline-2 outline-offset-2;
+		}
 	}
 
 	.dv-faq__chevron {
-		font-family: var(--dv-font-sans);
-		font-size: 1.5rem;
-		color: var(--dv-color-terracotta);
+		@apply text-terracotta font-sans text-2xl;
 		transition: transform var(--dv-duration-base) var(--dv-ease-soft);
 	}
 
-	details[open] .dv-faq__chevron {
+	.dv-faq__details[open] .dv-faq__chevron {
 		transform: rotate(45deg);
 	}
 
 	.dv-faq__a {
-		padding: 0 0.25rem 1.25rem;
-		color: var(--dv-color-charcoal-soft);
-		font-family: var(--dv-font-sans);
+		@apply text-charcoal-soft px-1 pb-5 font-sans;
 		line-height: 1.65;
 	}
 </style>

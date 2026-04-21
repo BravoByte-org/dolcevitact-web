@@ -11,10 +11,10 @@
 <section class="dv-rich">
 	<div class="dv-rich__inner">
 		{#if data.eyebrow}
-			<p class="dv-eyebrow">{data.eyebrow}</p>
+			<p class="dv-rich__eyebrow dv-eyebrow">{data.eyebrow}</p>
 		{/if}
 		{#if data.title}
-			<h2 class="dv-h2 mt-3">{data.title}</h2>
+			<h2 class="dv-rich__title dv-h2">{data.title}</h2>
 		{/if}
 		{#if data.content}
 			<div class="dv-rich__body">
@@ -26,30 +26,32 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-rich {
 		padding: clamp(3rem, 8vw, 5rem) 1.5rem;
 	}
 
 	.dv-rich__inner {
-		margin-inline: auto;
-		max-width: 42rem;
-		text-align: center;
+		@apply mx-auto max-w-[42rem] text-center;
+	}
+
+	.dv-rich__title {
+		@apply mt-3;
 	}
 
 	.dv-rich__body {
-		margin-top: 1.5rem;
-		color: var(--dv-color-charcoal-soft);
-		font-family: var(--dv-font-display);
+		@apply text-charcoal-soft font-display mt-6;
 		font-size: var(--dv-text-lede, 1.125rem);
 		line-height: var(--dv-leading-body, 1.75);
 	}
 
 	.dv-rich__body :global(p + p) {
-		margin-top: 1rem;
+		@apply mt-4;
 	}
 
 	.dv-rich__body :global(em) {
-		color: var(--dv-color-terracotta-deep);
+		@apply text-terracotta-deep;
 	}
 </style>

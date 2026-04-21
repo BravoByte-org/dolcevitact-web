@@ -25,13 +25,13 @@
 	<div class="dv-timeline__inner">
 		<header class="dv-timeline__header">
 			{#if data.eyebrow}
-				<p class="dv-eyebrow">{data.eyebrow}</p>
+				<p class="dv-timeline__eyebrow dv-eyebrow">{data.eyebrow}</p>
 			{/if}
 			{#if data.title}
-				<h2 class="dv-h2 mt-3">{data.title}</h2>
+				<h2 class="dv-timeline__title dv-h2">{data.title}</h2>
 			{/if}
 			{#if data.subtitle}
-				<p class="dv-lede mx-auto mt-4 text-balance">{data.subtitle}</p>
+				<p class="dv-timeline__subtitle dv-lede">{data.subtitle}</p>
 			{/if}
 		</header>
 
@@ -42,7 +42,7 @@
 						<span class="dv-timeline__marker" aria-hidden="true">{step.year ?? i + 1}</span>
 						<div class="dv-timeline__body">
 							{#if step.title}
-								<h3 class="dv-timeline__title">{step.title}</h3>
+								<h3 class="dv-timeline__step-title">{step.title}</h3>
 							{/if}
 							{#if step.description}
 								<p class="dv-timeline__desc">{step.description}</p>
@@ -55,72 +55,55 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-timeline {
 		padding: clamp(3.5rem, 9vw, 6rem) 1.5rem;
 	}
 
 	.dv-timeline__inner {
-		margin-inline: auto;
-		max-width: 42rem;
+		@apply mx-auto max-w-[42rem];
 	}
 
 	.dv-timeline__header {
-		text-align: center;
-		margin-bottom: 3rem;
+		@apply mb-12 text-center;
+	}
+
+	.dv-timeline__title {
+		@apply mt-3;
+	}
+
+	.dv-timeline__subtitle {
+		@apply mx-auto mt-4 text-balance;
 	}
 
 	.dv-timeline__list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		position: relative;
+		@apply relative m-0 list-none p-0;
 	}
 
 	.dv-timeline__list::before {
 		content: '';
-		position: absolute;
-		left: 1.35rem;
-		top: 1rem;
-		bottom: 1rem;
-		width: 1px;
+		@apply absolute top-4 bottom-4 left-[1.35rem] w-px;
 		background: color-mix(in srgb, var(--dv-color-gold) 60%, transparent);
 	}
 
 	.dv-timeline__item {
-		position: relative;
-		display: grid;
+		@apply relative grid gap-6 py-4;
 		grid-template-columns: 3rem 1fr;
-		gap: 1.5rem;
-		padding: 1rem 0;
 	}
 
 	.dv-timeline__marker {
-		position: relative;
-		z-index: 1;
-		width: 2.75rem;
-		height: 2.75rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 9999px;
-		background: var(--dv-color-ivory);
+		@apply bg-ivory text-gold-deep font-display relative z-[1] flex h-11 w-11 items-center justify-center rounded-full text-base;
 		border: 1px solid color-mix(in srgb, var(--dv-color-gold) 70%, transparent);
-		color: var(--dv-color-gold-deep);
-		font-family: var(--dv-font-display);
-		font-size: 1rem;
 	}
 
-	.dv-timeline__title {
-		font-family: var(--dv-font-display);
-		font-size: 1.25rem;
-		color: var(--dv-color-charcoal);
+	.dv-timeline__step-title {
+		@apply text-charcoal font-display text-xl;
 	}
 
 	.dv-timeline__desc {
-		margin-top: 0.5rem;
-		font-family: var(--dv-font-sans);
-		color: var(--dv-color-charcoal-soft);
+		@apply text-charcoal-soft mt-2 font-sans;
 		line-height: 1.65;
 	}
 </style>
