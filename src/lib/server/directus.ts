@@ -1,4 +1,11 @@
-import { createDirectus, rest, staticToken, readItems, readSingleton } from '@directus/sdk';
+import {
+	createDirectus,
+	rest,
+	staticToken,
+	readItems,
+	readSingleton,
+	createItem
+} from '@directus/sdk';
 import { env } from '$env/dynamic/private';
 
 /**
@@ -93,4 +100,4 @@ async function requestDirectus<T>(
 	}
 }
 
-export { getDirectusClient, requestDirectus, readItems, readSingleton };
+export { getDirectusClient, requestDirectus, readItems, readSingleton, createItem };
