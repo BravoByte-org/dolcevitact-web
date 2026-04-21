@@ -207,6 +207,18 @@ async function upsertRelation(def) {
 	}
 }
 
+// System collections aren't exposed under /items/* — they have their own
+// dedicated REST endpoints. Route GETs accordingly so this helper works
+// for both user-defined and system collections.
+const SYSTEM_COLLECTION_ENDPOINTS = {
+	directus_users: '/users',
+	directus_roles: '/roles',
+	directus_policies: '/policies',
+	directus_permissions: '/permissions',
+	directus_files: '/files',
+	directus_folders: '/folders'
+};
+
 /** Find the first item matching a filter, or null. */
 async function findOne(collection, filter, fields = ['id']) {
 	const qs = new URLSearchParams({
@@ -214,7 +226,8 @@ async function findOne(collection, filter, fields = ['id']) {
 		fields: fields.join(','),
 		limit: '1'
 	});
-	const r = await api('GET', `/items/${collection}?${qs}`);
+	const base = SYSTEM_COLLECTION_ENDPOINTS[collection] ?? `/items/${collection}`;
+	const r = await api('GET', `${base}?${qs}`);
 	return r.data?.[0] ?? null;
 }
 
