@@ -85,7 +85,12 @@ if (!ADMIN_TOKEN) {
 async function api(method, path, body) {
 	if (DRY_RUN && method !== 'GET') {
 		console.log(`  [dry-run] ${method} ${path}`, body ? JSON.stringify(body).slice(0, 200) : '');
-		return { data: null };
+		// Return a stub entity so downstream code that consumes the response
+		// (e.g. `const r = await api(...); r.data.id`) doesn't crash and we
+		// walk through every migration step during a dry-run. In a real run
+		// this branch is never taken; the Directus response is returned
+		// verbatim below.
+		return { data: { id: `dry-run-${randomUUID()}`, token: `dry-run-${randomUUID()}` } };
 	}
 
 	const res = await fetch(`${DIRECTUS_URL}${path}`, {
