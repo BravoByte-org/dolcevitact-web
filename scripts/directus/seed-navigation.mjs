@@ -19,6 +19,7 @@
  * M4b deliverable — see PR on BravoByte-org/dolcevitact-web.
  */
 
+import { randomUUID } from 'node:crypto';
 import process from 'node:process';
 
 const ARGS = new Set(process.argv.slice(2));
@@ -43,7 +44,12 @@ if (!ADMIN_TOKEN) {
 async function api(method, path, body) {
 	if (DRY_RUN && method !== 'GET') {
 		console.log(`  [dry-run] ${method} ${path}`, body ? JSON.stringify(body).slice(0, 200) : '');
-		return { data: { id: `dry-run-${Math.random().toString(16).slice(2, 10)}` } };
+		// Must be a real UUID, not a prefixed string — Directus passes the
+		// returned `id` back into Postgres filters on UUID columns (e.g.
+		// `navigation_items.navigation = $1`) on subsequent calls, and
+		// "dry-run-xxxx" trips "invalid input syntax for type uuid".
+		// Same fix applied to migrate.mjs (PR #18).
+		return { data: { id: randomUUID() } };
 	}
 
 	const res = await fetch(`${DIRECTUS_URL}${path}`, {
