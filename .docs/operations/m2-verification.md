@@ -7,14 +7,14 @@ safe; this file documents the initial apply for audit.
 
 ## Steps executed
 
-| #   | Step                                     | Outcome                                                                                                                                                                                                                                |
-| --- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Merge [PR #18][pr18]                     | closes the 4-commit dry-run robustness fix chain; all CI green (Install / Lint / Typecheck / Unit / Build / Vercel Preview)                                                                                                            |
-| 2   | `--seed --dry-run`                       | Read-only preview: zero creates, zero deletes, ~40 idempotent metadata PATCHes on existing fields + collections + two relation `meta.one_field`/`sort_field` nudges. Confirms the live schema matches what the committed script wants. |
-| 3   | `--seed` (real apply)                    | Applied 40+ PATCHes silently (apply mode doesn't print each one). Completed clean; exit 0.                                                                                                                                             |
-| 4   | Anonymous `POST /items/rsvp_submissions` | `HTTP 204` (success) — this revealed a bug, see below.                                                                                                                                                                                 |
-| 5   | Patch `migrate.mjs` for the bug          | Commit included in this PR; re-ran `--seed --skip-schema` to backfill the missing Public permission. Output: `+ perm create rsvp_submissions on policy abf8a154…`.                                                                     |
-| 6   | Re-verify anonymous `POST`               | `HTTP 204` again — now backed by a real Public permission row, not a coincidental Directus default.                                                                                                                                    |
+| # | Step                                | Outcome                                                                                          |
+| - | ----------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 1 | Merge [PR #18][pr18]                | closes the 4-commit dry-run robustness fix chain; all CI green (Install / Lint / Typecheck / Unit / Build / Vercel Preview) |
+| 2 | `--seed --dry-run`                  | Read-only preview: zero creates, zero deletes, ~40 idempotent metadata PATCHes on existing fields + collections + two relation `meta.one_field`/`sort_field` nudges. Confirms the live schema matches what the committed script wants. |
+| 3 | `--seed` (real apply)               | Applied 40+ PATCHes silently (apply mode doesn't print each one). Completed clean; exit 0. |
+| 4 | Anonymous `POST /items/rsvp_submissions` | `HTTP 204` (success) — this revealed a bug, see below.                                      |
+| 5 | Patch `migrate.mjs` for the bug     | Commit included in this PR; re-ran `--seed --skip-schema` to backfill the missing Public permission. Output: `+ perm create rsvp_submissions on policy abf8a154…`. |
+| 6 | Re-verify anonymous `POST`          | `HTTP 204` again — now backed by a real Public permission row, not a coincidental Directus default. |
 
 [pr18]: https://github.com/BravoByte-org/dolcevitact-web/pull/18
 
@@ -52,22 +52,22 @@ breaks in prod" class of bug.
 
 ## Live state after M2 close
 
-| Artifact                                    | Status / ID                                                                                                       |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `dolcevita` site row                        | `d934e7c1-6b20-4ea8-aaa7-ba7343d43b2c`                                                                            |
-| `Dolce Vita Content` editor policy          | `61af0ccc-b1e5-4258-a356-0e0d09e135b2`                                                                            |
-| `Dolce Vita Editor` role                    | `19dd94b4-1407-4b5c-b30d-63c414c71a7a`                                                                            |
-| `Dolce Vita App Service` user               | `f48174ea-0702-45cc-843f-bc6c2c66b844`                                                                            |
-| App Service token (in `.env`)               | valid — `/users/me` returns `HTTP 200`                                                                            |
-| `block_faq` + `block_faq_items`             | created, `display_template` = `{{title}}` / `{{question}}`                                                        |
-| `block_event_details`                       | created, `display_template` = `{{title}} — {{date}}`                                                              |
-| `block_rsvp_form`                           | created, `display_template` = `{{title}}`                                                                         |
-| `rsvp_submissions`                          | created, `display_template` = `{{name}} — {{email}}`, archive_field=`status` archive_value=`cancelled`            |
-| `page_blocks` M2A `one_allowed_collections` | includes all 3 new block parents + the pre-existing 8                                                             |
-| Placeholder homepage                        | `a92a946c-d116-4abe-b143-cd084f2eff20`, 9 blocks                                                                  |
-| Published Content Reader → read             | all 4 new block collections                                                                                       |
-| Dolce Vita Content (editor) → CRU           | all 4 new block collections, `rsvp_submissions` R+U only                                                          |
-| **Public → create on `rsvp_submissions`**   | backfilled after the policy-name-fix re-run (allow-list: site/name/email/phone/baby_age/message/event_ref/source) |
+| Artifact                             | Status / ID                                                   |
+| ------------------------------------ | ------------------------------------------------------------- |
+| `dolcevita` site row                 | `d934e7c1-6b20-4ea8-aaa7-ba7343d43b2c`                        |
+| `Dolce Vita Content` editor policy   | `61af0ccc-b1e5-4258-a356-0e0d09e135b2`                        |
+| `Dolce Vita Editor` role             | `19dd94b4-1407-4b5c-b30d-63c414c71a7a`                        |
+| `Dolce Vita App Service` user        | `f48174ea-0702-45cc-843f-bc6c2c66b844`                        |
+| App Service token (in `.env`)        | valid — `/users/me` returns `HTTP 200`                        |
+| `block_faq` + `block_faq_items`      | created, `display_template` = `{{title}}` / `{{question}}`    |
+| `block_event_details`                | created, `display_template` = `{{title}} — {{date}}`          |
+| `block_rsvp_form`                    | created, `display_template` = `{{title}}`                     |
+| `rsvp_submissions`                   | created, `display_template` = `{{name}} — {{email}}`, archive_field=`status` archive_value=`cancelled` |
+| `page_blocks` M2A `one_allowed_collections` | includes all 3 new block parents + the pre-existing 8  |
+| Placeholder homepage                 | `a92a946c-d116-4abe-b143-cd084f2eff20`, 9 blocks              |
+| Published Content Reader → read      | all 4 new block collections                                   |
+| Dolce Vita Content (editor) → CRU    | all 4 new block collections, `rsvp_submissions` R+U only      |
+| **Public → create on `rsvp_submissions`** | backfilled after the policy-name-fix re-run (allow-list: site/name/email/phone/baby_age/message/event_ref/source) |
 
 ## Not applied (intentional)
 
