@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+@import './lib/styles/tokens.css';
+@import './lib/styles/fonts.css';
+@import './lib/styles/motion.css';
+
+/* em-based custom-media for browser zoom + user font-size accessibility. */
+@custom-media --sm (min-width: 40em);
+@custom-media --md (min-width: 48em);
+@custom-media --lg (min-width: 64em);
+@custom-media --xl (min-width: 80em);
+
+/* Map design tokens into Tailwind v4 theme so utilities like bg-ivory,
+   text-terracotta, font-display, shadow-soft work. */
+@theme {
+	--color-ivory: var(--dv-color-ivory);
+	--color-ivory-deep: var(--dv-color-ivory-deep);
+	--color-ivory-shadow: var(--dv-color-ivory-shadow);
+	--color-terracotta: var(--dv-color-terracotta);
+	--color-terracotta-soft: var(--dv-color-terracotta-soft);
+	--color-terracotta-deep: var(--dv-color-terracotta-deep);
+	--color-sage: var(--dv-color-sage);
+	--color-sage-soft: var(--dv-color-sage-soft);
+	--color-sage-deep: var(--dv-color-sage-deep);
+	--color-taupe: var(--dv-color-taupe);
+	--color-gold: var(--dv-color-gold);
+	--color-gold-deep: var(--dv-color-gold-deep);
+	--color-charcoal: var(--dv-color-charcoal);
+	--color-charcoal-soft: var(--dv-color-charcoal-soft);
+	--color-charcoal-mute: var(--dv-color-charcoal-mute);
+
+	--font-display: var(--dv-font-display);
+	--font-script: var(--dv-font-script);
+	--font-sans: var(--dv-font-sans);
+
+	--text-eyebrow: var(--dv-text-eyebrow);
+	--text-body: var(--dv-text-body);
+	--text-lede: var(--dv-text-lede);
+	--text-h4: var(--dv-text-h4);
+	--text-h3: var(--dv-text-h3);
+	--text-h2: var(--dv-text-h2);
+	--text-h1: var(--dv-text-h1);
+	--text-script: var(--dv-text-script);
+
+	--radius-sm: var(--dv-radius-sm);
+	--radius-md: var(--dv-radius-md);
+	--radius-lg: var(--dv-radius-lg);
+
+	--shadow-soft: var(--dv-shadow-soft);
+	--shadow-card: var(--dv-shadow-card);
+	--shadow-lift: var(--dv-shadow-lift);
+
+	--ease-soft: var(--dv-ease-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
+}
+
+body {
+	font-family: var(--dv-font-sans);
+	font-size: var(--dv-text-body);
+	line-height: var(--dv-leading-body);
+	color: var(--dv-color-charcoal);
+	background-color: var(--dv-color-ivory);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Eyebrow — small, wide-tracked, uppercase. Used to label sections. */
+.dv-eyebrow {
+	font-family: var(--dv-font-sans);
+	font-size: var(--dv-text-eyebrow);
+	font-weight: 500;
+	letter-spacing: var(--dv-tracking-eyebrow);
+	text-transform: uppercase;
+	color: var(--dv-color-charcoal-mute);
+}
+
+/* Display headings */
+.dv-h1 {
+	font-family: var(--dv-font-display);
+	font-size: var(--dv-text-h1);
+	font-weight: 500;
+	line-height: var(--dv-leading-tight);
+	letter-spacing: -0.01em;
+	color: var(--dv-color-charcoal);
+}
+
+.dv-h2 {
+	font-family: var(--dv-font-display);
+	font-size: var(--dv-text-h2);
+	font-weight: 500;
+	line-height: var(--dv-leading-snug);
+	letter-spacing: -0.005em;
+	color: var(--dv-color-charcoal);
+}
+
+.dv-script {
+	font-family: var(--dv-font-script);
+	font-size: var(--dv-text-script);
+	line-height: 1;
+	color: var(--dv-color-gold);
+}
+
+/* Lede paragraph — slightly larger and lighter than body */
+.dv-lede {
+	font-size: var(--dv-text-lede);
+	color: var(--dv-color-charcoal-soft);
+	line-height: var(--dv-leading-body);
+}

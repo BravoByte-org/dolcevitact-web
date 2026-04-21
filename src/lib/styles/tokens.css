@@ -1,0 +1,81 @@
+/*
+ * Dolce Vita CT — design tokens
+ * --------------------------------------------------------------
+ * The brand palette is intentionally restrained: warm ivory paper,
+ * earthy terracotta, muted sage, sand taupe, restrained gold accents,
+ * and soft charcoal text. Every other surface should be a derivative
+ * of these. Keep this file small and avoid hard-coded hex values
+ * elsewhere in the codebase.
+ */
+
+:root {
+	/* ------------------------------------------------------------- */
+	/* Color                                                          */
+	/* ------------------------------------------------------------- */
+	--dv-color-ivory: #f6f1ec;
+	--dv-color-ivory-deep: #ede5db;
+	--dv-color-ivory-shadow: #e3d9cb;
+	--dv-color-terracotta: #b8694b;
+	--dv-color-terracotta-soft: #d99578;
+	--dv-color-terracotta-deep: #8f4d35;
+	--dv-color-sage: #8a9a7a;
+	--dv-color-sage-soft: #b6c2a8;
+	--dv-color-sage-deep: #5e6e51;
+	--dv-color-taupe: #b8a88f;
+	--dv-color-gold: #c9a46b;
+	--dv-color-gold-deep: #a98448;
+	--dv-color-charcoal: #2b2a28;
+	--dv-color-charcoal-soft: #5b5853;
+	--dv-color-charcoal-mute: #8a8680;
+
+	/* ------------------------------------------------------------- */
+	/* Typography                                                     */
+	/* ------------------------------------------------------------- */
+	--dv-font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+	--dv-font-script: 'Tangerine', 'Allura', cursive;
+	--dv-font-sans:
+		'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+	/* Editorial-feel fluid type scale */
+	--dv-text-eyebrow: 0.75rem; /* 12px */
+	--dv-text-body: 1.0625rem; /* 17px — slightly larger than default sans for editorial cadence */
+	--dv-text-lede: clamp(1.125rem, 0.9rem + 0.7vw, 1.375rem);
+	--dv-text-h4: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
+	--dv-text-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2rem);
+	--dv-text-h2: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+	--dv-text-h1: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+	--dv-text-script: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+
+	--dv-leading-tight: 1.1;
+	--dv-leading-snug: 1.25;
+	--dv-leading-body: 1.65;
+	--dv-tracking-eyebrow: 0.18em;
+
+	/* ------------------------------------------------------------- */
+	/* Spacing                                                        */
+	/* ------------------------------------------------------------- */
+	--dv-space-section: clamp(4rem, 8vw, 8rem);
+	--dv-space-block: clamp(1.5rem, 3vw, 3rem);
+
+	/* ------------------------------------------------------------- */
+	/* Radii — subtle, never playful                                  */
+	/* ------------------------------------------------------------- */
+	--dv-radius-sm: 4px;
+	--dv-radius-md: 8px;
+	--dv-radius-lg: 12px;
+
+	/* ------------------------------------------------------------- */
+	/* Shadows — only where useful                                    */
+	/* ------------------------------------------------------------- */
+	--dv-shadow-soft: 0 12px 32px -16px rgb(43 42 40 / 0.18);
+	--dv-shadow-card: 0 18px 40px -22px rgb(43 42 40 / 0.22);
+	--dv-shadow-lift: 0 1px 0 0 rgb(43 42 40 / 0.04), 0 24px 56px -28px rgb(43 42 40 / 0.28);
+
+	/* ------------------------------------------------------------- */
+	/* Motion                                                         */
+	/* ------------------------------------------------------------- */
+	--dv-ease-soft: cubic-bezier(0.32, 0.08, 0.24, 1);
+	--dv-duration-fast: 180ms;
+	--dv-duration-base: 320ms;
+	--dv-duration-slow: 600ms;
+}
