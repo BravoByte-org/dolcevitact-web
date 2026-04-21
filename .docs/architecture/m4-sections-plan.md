@@ -16,22 +16,22 @@ dedicated stories / PRs per [`bravobyte-ai/git-history.md`](../../../bravobyte-a
 
 ### In
 
-| Deliverable                  | Story | Issue |
-| ---------------------------- | ----- | ----- |
-| `$components/blocks/types.ts` + `BlockRenderer` shell                    | M4a-1 | [#10](https://github.com/BravoByte-org/dolcevitact-web/issues/10) |
-| Six adapted shared-candidate blocks (hero, card_group, timeline, team, rich_text, cta/image_gallery if needed) | M4a-2 | " |
-| Three Dolce-Vita-first blocks (`block_event_details`, `block_rsvp_form` shell, `block_faq` + items)          | M4a-3 | " |
-| Editorial sticky nav + mobile drawer (`SiteNav` + `NavDrawer`), replaces the temp ribbon                      | M4b   | [#9](https://github.com/BravoByte-org/dolcevitact-web/issues/9)  |
-| Footer polish (keep current layout footer, tidy copy + socials if any)                                         | M4b   | [#9](https://github.com/BravoByte-org/dolcevitact-web/issues/9)  |
+| Deliverable                                                                                                    | Story | Issue                                                             |
+| -------------------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------------- |
+| `$components/blocks/types.ts` + `BlockRenderer` shell                                                          | M4a-1 | [#10](https://github.com/BravoByte-org/dolcevitact-web/issues/10) |
+| Six adapted shared-candidate blocks (hero, card_group, timeline, team, rich_text, cta/image_gallery if needed) | M4a-2 | "                                                                 |
+| Three Dolce-Vita-first blocks (`block_event_details`, `block_rsvp_form` shell, `block_faq` + items)            | M4a-3 | "                                                                 |
+| Editorial sticky nav + mobile drawer (`SiteNav` + `NavDrawer`), replaces the temp ribbon                       | M4b   | [#9](https://github.com/BravoByte-org/dolcevitact-web/issues/9)   |
+| Footer polish (keep current layout footer, tidy copy + socials if any)                                         | M4b   | [#9](https://github.com/BravoByte-org/dolcevitact-web/issues/9)   |
 
 ### Out (explicitly deferred)
 
-| Item | Where it lands |
-| ---- | -------------- |
+| Item                                                                                             | Where it lands                                                         |
+| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
 | `block_rsvp_form` submit action (anonymous `POST /items/rsvp_submissions` → Resend notification) | M5 ([#11](https://github.com/BravoByte-org/dolcevitact-web/issues/11)) |
-| Image optimization (`@sveltejs/enhanced-img`), OG images, JSON-LD     | M6 ([#12](https://github.com/BravoByte-org/dolcevitact-web/issues/12)) |
-| Section entrance animations beyond what `$styles/motion.css` already provides | Captured in M6 polish pass |
-| Italian translations on CMS fields / UI strings                        | Parked (spec §7 — English-only v1)  |
+| Image optimization (`@sveltejs/enhanced-img`), OG images, JSON-LD                                | M6 ([#12](https://github.com/BravoByte-org/dolcevitact-web/issues/12)) |
+| Section entrance animations beyond what `$styles/motion.css` already provides                    | Captured in M6 polish pass                                             |
+| Italian translations on CMS fields / UI strings                                                  | Parked (spec §7 — English-only v1)                                     |
 
 ## 2. Component architecture
 
@@ -45,34 +45,34 @@ collections:
 
 ```svelte
 <script lang="ts">
-  import HeroBlock from './HeroBlock.svelte';
-  import RichTextBlock from './RichTextBlock.svelte';
-  import CardGroupBlock from './CardGroupBlock.svelte';
-  import TimelineBlock from './TimelineBlock.svelte';
-  import TeamBlock from './TeamBlock.svelte';
-  // DV-first
-  import EventDetailsBlock from './EventDetailsBlock.svelte';
-  import RsvpFormBlock from './RsvpFormBlock.svelte';
-  import FaqBlock from './FaqBlock.svelte';
+	import HeroBlock from './HeroBlock.svelte';
+	import RichTextBlock from './RichTextBlock.svelte';
+	import CardGroupBlock from './CardGroupBlock.svelte';
+	import TimelineBlock from './TimelineBlock.svelte';
+	import TeamBlock from './TeamBlock.svelte';
+	// DV-first
+	import EventDetailsBlock from './EventDetailsBlock.svelte';
+	import RsvpFormBlock from './RsvpFormBlock.svelte';
+	import FaqBlock from './FaqBlock.svelte';
 
-  import type { Block } from './types';
-  let { blocks = [] }: { blocks: Block[] } = $props();
+	import type { Block } from './types';
+	let { blocks = [] }: { blocks: Block[] } = $props();
 
-  const componentMap = {
-    block_hero: HeroBlock,
-    block_rich_text: RichTextBlock,
-    block_card_group: CardGroupBlock,
-    block_timeline: TimelineBlock,
-    block_team: TeamBlock,
-    block_event_details: EventDetailsBlock,
-    block_rsvp_form: RsvpFormBlock,
-    block_faq: FaqBlock,
-  } as const;
+	const componentMap = {
+		block_hero: HeroBlock,
+		block_rich_text: RichTextBlock,
+		block_card_group: CardGroupBlock,
+		block_timeline: TimelineBlock,
+		block_team: TeamBlock,
+		block_event_details: EventDetailsBlock,
+		block_rsvp_form: RsvpFormBlock,
+		block_faq: FaqBlock
+	} as const;
 </script>
 
 {#each blocks as block, i (`${block.collection}-${block.item.id ?? i}`)}
-  {@const Component = componentMap[block.collection as keyof typeof componentMap]}
-  {#if Component}<Component data={block.item as never} />{/if}
+	{@const Component = componentMap[block.collection as keyof typeof componentMap]}
+	{#if Component}<Component data={block.item as never} />{/if}
 {/each}
 ```
 
@@ -82,16 +82,16 @@ Until then, keep the `Block = { collection: string; item: Record<string, unknown
 
 ### 2.2 Per-block components (directory: `src/lib/components/blocks/`)
 
-| File                    | Directus collection     | Starway origin? | Brand adaptations required                                                     |
-| ----------------------- | ----------------------- | --------------- | ------------------------------------------------------------------------------ |
-| `HeroBlock.svelte`      | `block_hero`            | ✓               | Replace utility color + type scales with DV tokens (Cormorant display + terracotta CTA); adopt `Grain` + `GoldRule` decoratives |
-| `RichTextBlock.svelte`  | `block_rich_text`       | ✓               | Scoped prose styles using `--dv-color-charcoal` / serif body, `OliveBranch` flourish at top if `variant === 'editorial'` |
-| `CardGroupBlock.svelte` | `block_card_group`      | ✓               | Strip trucking-specific hover effects; keep image-backed variant flag; use ivory/terracotta/sage trio |
-| `TimelineBlock.svelte`  | `block_timeline`        | ✓               | Replace Starway vertical-rule with DV `GoldRule` dividers; smaller year labels in script font |
-| `TeamBlock.svelte`      | `block_team`            | ✓               | Single-founder-optimized layout (most DV usage is n=1); bio reads as editorial paragraph, not Starway's card grid |
-| `EventDetailsBlock.svelte`   | `block_event_details` | ✗ (NEW) | Structured card: eyebrow, date/time/city stack, location note, CTA pill. Anchor via `cta_anchor` to `#rsvp`. |
-| `RsvpFormBlock.svelte`       | `block_rsvp_form`    | ✗ (NEW) | M4: renders the shell (heading, copy, fields, consent, success/error slots). M5: hooks `enhance` to the `/reserve` form action. No network I/O this milestone. |
-| `FaqBlock.svelte`            | `block_faq`          | ✗ (NEW) | Accordion pattern. Wraps child `block_faq_items` as `<details>`/`<summary>` for progressive-enhancement-first a11y. |
+| File                       | Directus collection   | Starway origin? | Brand adaptations required                                                                                                                                     |
+| -------------------------- | --------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `HeroBlock.svelte`         | `block_hero`          | ✓               | Replace utility color + type scales with DV tokens (Cormorant display + terracotta CTA); adopt `Grain` + `GoldRule` decoratives                                |
+| `RichTextBlock.svelte`     | `block_rich_text`     | ✓               | Scoped prose styles using `--dv-color-charcoal` / serif body, `OliveBranch` flourish at top if `variant === 'editorial'`                                       |
+| `CardGroupBlock.svelte`    | `block_card_group`    | ✓               | Strip trucking-specific hover effects; keep image-backed variant flag; use ivory/terracotta/sage trio                                                          |
+| `TimelineBlock.svelte`     | `block_timeline`      | ✓               | Replace Starway vertical-rule with DV `GoldRule` dividers; smaller year labels in script font                                                                  |
+| `TeamBlock.svelte`         | `block_team`          | ✓               | Single-founder-optimized layout (most DV usage is n=1); bio reads as editorial paragraph, not Starway's card grid                                              |
+| `EventDetailsBlock.svelte` | `block_event_details` | ✗ (NEW)         | Structured card: eyebrow, date/time/city stack, location note, CTA pill. Anchor via `cta_anchor` to `#rsvp`.                                                   |
+| `RsvpFormBlock.svelte`     | `block_rsvp_form`     | ✗ (NEW)         | M4: renders the shell (heading, copy, fields, consent, success/error slots). M5: hooks `enhance` to the `/reserve` form action. No network I/O this milestone. |
+| `FaqBlock.svelte`          | `block_faq`           | ✗ (NEW)         | Accordion pattern. Wraps child `block_faq_items` as `<details>`/`<summary>` for progressive-enhancement-first a11y.                                            |
 
 For the 5 Starway-origin blocks, the work is **scoped CSS replacement**,
 not structural rewrite — the markup, prop shapes, data flow, and M2A
@@ -145,22 +145,22 @@ classes in the rendered markup.
 Track each as a candidate. Extraction happens when a third client
 requests the same shape — until then, stay client-local per Rule Zero.
 
-| Candidate                                      | Why it's shared-candidate                                                                                     | Extraction trigger       |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| `BlockRenderer` registry pattern               | Identical shape already in Starway; the registry map is the only delta per client                             | 3rd client adopts blocks |
-| `HeroBlock`, `RichTextBlock`, `CardGroupBlock`, `TimelineBlock`, `TeamBlock` contracts + **un-styled** primitives | Markup structure + prop shape are shared; only CSS is client-local                                   | 3rd client adopts blocks |
-| `NavDrawer` + `HamburgerButton` (body-scroll-lock, focus trap, `aria-modal`) | Pure a11y utilities, zero brand opinions                                                     | 2nd use (Starway also needs a drawer for complex nav — already partial) |
-| `breakpoints.css` em-based custom media set    | Identical values across clients; zero brand variance                                                          | 3rd client adopts Tailwind v4 |
-| `EventDetailsBlock` + `RsvpFormBlock` + `FaqBlock` + `FaqItem` shells | DV-first but the contracts are already shared in `@bravobyte/types` per M1; the unstyled shells are the next layer up | 2nd client needs event/RSVP/FAQ flows |
+| Candidate                                                                                                         | Why it's shared-candidate                                                                                             | Extraction trigger                                                      |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `BlockRenderer` registry pattern                                                                                  | Identical shape already in Starway; the registry map is the only delta per client                                     | 3rd client adopts blocks                                                |
+| `HeroBlock`, `RichTextBlock`, `CardGroupBlock`, `TimelineBlock`, `TeamBlock` contracts + **un-styled** primitives | Markup structure + prop shape are shared; only CSS is client-local                                                    | 3rd client adopts blocks                                                |
+| `NavDrawer` + `HamburgerButton` (body-scroll-lock, focus trap, `aria-modal`)                                      | Pure a11y utilities, zero brand opinions                                                                              | 2nd use (Starway also needs a drawer for complex nav — already partial) |
+| `breakpoints.css` em-based custom media set                                                                       | Identical values across clients; zero brand variance                                                                  | 3rd client adopts Tailwind v4                                           |
+| `EventDetailsBlock` + `RsvpFormBlock` + `FaqBlock` + `FaqItem` shells                                             | DV-first but the contracts are already shared in `@bravobyte/types` per M1; the unstyled shells are the next layer up | 2nd client needs event/RSVP/FAQ flows                                   |
 
 ## 5. Testing plan
 
-| Layer      | Coverage                                                                                                      | Tool                             |
-| ---------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| Component  | Each block renders with a minimal prop set; `BlockRenderer` skips unknown collections without throwing        | `vitest` + `@testing-library/svelte` |
-| Integration| `/` renders 9 blocks when Directus returns the seeded homepage; falls back to M3 placeholder on load failure  | `vitest` (SSR smoke)             |
-| A11y       | `NavDrawer` traps focus, restores on close, `Esc` closes; `FaqBlock` keyboard-navigable via `<details>`        | `@axe-core/playwright`           |
-| Visual     | No blank states, no utility-class leak, fonts load (Cormorant, Tangerine, Inter); Lighthouse ≥ 95 deferred to M6 | Playwright + manual preview      |
+| Layer       | Coverage                                                                                                         | Tool                                 |
+| ----------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| Component   | Each block renders with a minimal prop set; `BlockRenderer` skips unknown collections without throwing           | `vitest` + `@testing-library/svelte` |
+| Integration | `/` renders 9 blocks when Directus returns the seeded homepage; falls back to M3 placeholder on load failure     | `vitest` (SSR smoke)                 |
+| A11y        | `NavDrawer` traps focus, restores on close, `Esc` closes; `FaqBlock` keyboard-navigable via `<details>`          | `@axe-core/playwright`               |
+| Visual      | No blank states, no utility-class leak, fonts load (Cormorant, Tangerine, Inter); Lighthouse ≥ 95 deferred to M6 | Playwright + manual preview          |
 
 Unit tests are optional for pure presentational components where the
 markup and prop shape are the full contract; SSR + a11y smoke tests are
