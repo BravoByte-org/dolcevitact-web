@@ -272,13 +272,27 @@ async function ensureSite() {
 	return r.data.id;
 }
 
-/** Look up an existing policy by name; null if not found. */
-async function findPolicyByName(name) {
-	const r = await api(
-		'GET',
-		`/policies?filter[name][_eq]=${encodeURIComponent(name)}&fields=id,name&limit=1`
-	);
-	return r.data?.[0] ?? null;
+/**
+ * Look up an existing policy by name; null if not found.
+ *
+ * Directus stores some system policy names as i18n translation keys (e.g.
+ * the built-in Public policy is stored as literal `$t:public_label`, which
+ * the admin UI resolves to "Public"). API filters match the raw stored
+ * value, not the rendered label — so callers must pass every candidate
+ * name the target policy might have. The first match wins.
+ *
+ * See `bravobyte-ai/rules/directus-collection-permissions.md` → "Looking
+ * up system policies by name".
+ */
+async function findPolicyByName(...names) {
+	for (const name of names) {
+		const r = await api(
+			'GET',
+			`/policies?filter[name][_eq]=${encodeURIComponent(name)}&fields=id,name&limit=1`
+		);
+		if (r.data?.[0]) return r.data[0];
+	}
+	return null;
 }
 
 /** Look up an existing role by name; null if not found. */
@@ -726,7 +740,14 @@ async function backfillPermissions(editorPolicyId) {
 		);
 	}
 
-	const pub = await findPolicyByName('Public');
+	// Directus stores the built-in Public policy name as the i18n key
+	// `$t:public_label`; only translates to "Public" in the admin UI.
+	const pub = await findPolicyByName('Public', '$t:public_label');
+	if (!pub) {
+		console.warn(
+			'  ⚠ Public policy not found under either "Public" or "$t:public_label"; skipping Public create on rsvp_submissions. Check the policies list in Directus admin and re-run.'
+		);
+	}
 
 	// Published Content Reader (shared SSR read): permissions:{} on block collections
 	// since they're reached only via site-scoped pages.
