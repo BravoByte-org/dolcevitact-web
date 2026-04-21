@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import Grain from '$components/decor/Grain.svelte';
 
 	let { children } = $props();
 </script>
@@ -19,6 +20,16 @@
 	/>
 	<meta property="og:url" content="https://dolcevitact.com/" />
 	<meta property="og:locale" content="en_US" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Tangerine:wght@400;700&display=swap"
+	/>
 </svelte:head>
 
-{@render children()}
+<Grain />
+
+<div class="relative z-10">
+	{@render children()}
+</div>
