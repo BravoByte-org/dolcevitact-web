@@ -1,0 +1,43 @@
+/*
+ * Reusable motion primitives for editorial entrance + emphasis.
+ * Every keyframe is short and softly eased. The reduced-motion
+ * media query in app.css shortens transitions/animations to ~0,
+ * so consumers don't need to guard each call site individually.
+ */
+
+@keyframes dv-fade-rise {
+	from {
+		opacity: 0;
+		transform: translateY(0.75rem);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes dv-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes dv-rule-grow {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+.dv-anim-rise {
+	animation: dv-fade-rise var(--dv-duration-slow) var(--dv-ease-soft) both;
+}
+
+.dv-anim-fade {
+	animation: dv-fade-in var(--dv-duration-base) var(--dv-ease-soft) both;
+}
