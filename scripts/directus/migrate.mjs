@@ -481,7 +481,7 @@ const COLLECTIONS = [
 			fStr('eyebrow', { note: 'Small caps label above the section heading.' }),
 			fStr('title', { required: true, note: 'Section heading.' }),
 			fText('subtitle', { note: 'Optional paragraph under the heading.' }),
-			fInt('sort', { hidden: true, sort: true }),
+			fInt('sort', { hidden: true }),
 			{
 				field: 'site',
 				type: 'uuid',
@@ -520,7 +520,7 @@ const COLLECTIONS = [
 			},
 			fStr('question', { required: true, max: 500 }),
 			fHtml('answer_html', { note: 'Rich-text answer body.' }),
-			fInt('sort', { hidden: true, sort: true })
+			fInt('sort', { hidden: true })
 		]
 	},
 	{
@@ -549,7 +549,7 @@ const COLLECTIONS = [
 			fStr('cta_anchor', {
 				note: 'Hash or path target for the CTA (e.g. "#rsvp").'
 			}),
-			fInt('sort', { hidden: true, sort: true }),
+			fInt('sort', { hidden: true }),
 			{
 				field: 'site',
 				type: 'uuid',
@@ -580,7 +580,7 @@ const COLLECTIONS = [
 			fStr('success_title', { required: true, note: 'Shown after a successful submit.' }),
 			fText('success_body', { note: 'Body shown beneath success_title.' }),
 			fText('consent_copy', { note: 'Small-print consent line under the submit button.' }),
-			fInt('sort', { hidden: true, sort: true }),
+			fInt('sort', { hidden: true }),
 			{
 				field: 'site',
 				type: 'uuid',
