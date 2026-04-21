@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@import './lib/styles/tokens.css';
+@import './lib/styles/fonts.css';
+
+/* em-based custom-media for browser zoom + user font-size accessibility. */
+@custom-media --sm (min-width: 40em);
+@custom-media --md (min-width: 48em);
+@custom-media --lg (min-width: 64em);
+@custom-media --xl (min-width: 80em);
+
+/* Map design tokens into Tailwind v4 theme so utilities like bg-ivory, text-terracotta, font-display work. */
+@theme {
+	--color-ivory: var(--dv-color-ivory);
+	--color-terracotta: var(--dv-color-terracotta);
+	--color-sage: var(--dv-color-sage);
+	--color-taupe: var(--dv-color-taupe);
+	--color-gold: var(--dv-color-gold);
+	--color-charcoal: var(--dv-color-charcoal);
+	--color-charcoal-soft: var(--dv-color-charcoal-soft);
+
+	--font-display: var(--dv-font-display);
+	--font-script: var(--dv-font-script);
+	--font-sans: var(--dv-font-sans);
+
+	--radius-card: 0.5rem;
+	--radius-pill: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
+}
+
+body {
+	font-family: var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
