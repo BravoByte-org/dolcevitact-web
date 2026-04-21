@@ -1,6 +1,9 @@
 <script lang="ts">
 	import '../../app.css';
 	import Grain from '$components/decor/Grain.svelte';
+	import SiteNav from '$components/navigation/SiteNav.svelte';
+	import SiteFooter from '$components/navigation/SiteFooter.svelte';
+	import type { NavItem } from '$components/navigation/types';
 	import type { LayoutData } from './$types';
 	import type { Snippet } from 'svelte';
 
@@ -10,6 +13,7 @@
 		(data.site as { title?: string | null; description?: string | null } | null) ?? null
 	);
 	const siteTitle = $derived(site?.title ?? 'Dolce Vita CT');
+	const navItems = $derived(((data.navigation ?? []) as NavItem[]) ?? []);
 </script>
 
 <svelte:head>
@@ -41,32 +45,33 @@
 <a href="#main" class="dv-skip-link">Skip to content</a>
 
 <div class="dv-shell">
-	<!--
-		M4b will replace this temporary ribbon with a real editorial sticky nav
-		+ mobile drawer. Kept minimal here so M4a focuses strictly on the
-		Directus → BlockRenderer wiring.
-	-->
-	<header class="dv-shell__header">
-		<a href="/" class="dv-shell__brand">
-			<span class="dv-script">{siteTitle}</span>
-		</a>
-	</header>
+	<SiteNav items={navItems} {siteTitle} />
 
 	<main id="main" class="dv-shell__main">
 		{@render children?.()}
 	</main>
 
-	<footer class="dv-shell__footer">
-		<div class="dv-shell__footer-inner">
-			<p class="dv-shell__footer-brand">{siteTitle}</p>
-			<p class="dv-shell__footer-meta">
-				Stamford, Connecticut · &copy; {new Date().getFullYear()}
-			</p>
-		</div>
-	</footer>
+	<SiteFooter items={navItems} {siteTitle} />
 </div>
 
 <style>
+	/*
+	 * Smooth in-page jumps for the sticky nav's section anchors. Scroll
+	 * offset matches the default nav bar height (64px compact, ~80px on
+	 * the wider bar) so the heading lands just under the sticky ribbon
+	 * instead of hiding behind it.
+	 */
+	:global(html) {
+		scroll-behavior: smooth;
+		scroll-padding-top: 5rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+	}
+
 	.dv-skip-link {
 		position: absolute;
 		left: -9999px;
@@ -89,44 +94,7 @@
 		z-index: 10;
 	}
 
-	.dv-shell__header {
-		display: flex;
-		justify-content: center;
-		padding: 2rem 1.5rem 1rem;
-	}
-
-	.dv-shell__brand {
-		color: var(--dv-color-charcoal);
-	}
-
 	.dv-shell__main {
 		flex: 1;
-	}
-
-	.dv-shell__footer {
-		margin-top: auto;
-		padding: 3rem 1.5rem 2.5rem;
-		border-top: 1px solid color-mix(in srgb, var(--dv-color-charcoal) 8%, transparent);
-	}
-
-	.dv-shell__footer-inner {
-		margin-inline: auto;
-		max-width: 48rem;
-		text-align: center;
-	}
-
-	.dv-shell__footer-brand {
-		font-family: var(--dv-font-script, serif);
-		font-size: 2rem;
-		color: var(--dv-color-terracotta-deep);
-	}
-
-	.dv-shell__footer-meta {
-		margin-top: 0.5rem;
-		font-family: var(--dv-font-sans);
-		font-size: 0.72rem;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-		color: var(--dv-color-charcoal-mute);
 	}
 </style>
