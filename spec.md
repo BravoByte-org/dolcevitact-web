@@ -2,7 +2,7 @@
 
 > **Owner:** BravoByteLLC for Dolce Vita CT
 > **Domain:** https://dolcevitact.com
-> **Status:** M2 Directus schema — migration script + app-side plumbing in review; Directus admin-token run pending
+> **Status:** M2 Directus schema — **complete** (migration applied + verified Apr 21 2026; see [`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md)). M4 (sections) is now the active milestone.
 > **Last Updated:** April 21, 2026
 
 This is the single source of truth for what `dolcevitact-web` is, why it exists,
@@ -80,9 +80,9 @@ The homepage is a single Directus `pages` row composed of M2A blocks:
 | M-1 | GitHub workspace         | done        | —                                                                  | Repo, labels, templates, board, epics, stories |
 | M0  | Foundation               | in progress | [#1](https://github.com/BravoByte-org/dolcevitact-web/milestone/1) | Scaffold + Directus site row + Vercel + DNS    |
 | M1  | Shared content contracts | in review   | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension (types PR #2)     |
-| M2  | Directus schema          | in review   | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration script + app plumbing     |
+| M2  | Directus schema          | done        | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration applied + verified Apr 21 2026 (runlog: [`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md)) |
 | M3  | Design system            | done        | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16 merged)    |
-| M4  | Sections                 | planned     | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | 9 sections + nav + footer                      |
+| M4  | Sections                 | in progress | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | 9 sections + nav + footer — plan: [`.docs/architecture/m4-sections-plan.md`](./.docs/architecture/m4-sections-plan.md) |
 | M5  | RSVP                     | planned     | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | Form action + Resend                           |
 | M6  | Launch                   | planned     | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | SEO, a11y, deploy                              |
 
