@@ -1,0 +1,17 @@
+{
+	"alias": "dolcevitact.com",
+	"git": {
+		"deploymentEnabled": {
+			"main": true,
+			"next": true,
+			"feat/*": false,
+			"feature/*": false,
+			"chore/*": false,
+			"bug/*": false,
+			"hotfix/*": false
+		}
+	},
+	"github": {
+		"autoAlias": true
+	}
+}

@@ -1,0 +1,51 @@
+---
+description: Dolce Vita CT delivery repo — context, scope, and house style
+globs:
+alwaysApply: true
+---
+
+# Dolce Vita CT — repo context
+
+You are working in `dolcevitact-web`, a **thin BravoByte delivery repo** that
+ships the marketing single-page application for [dolcevitact.com](https://dolcevitact.com)
+— a premium Italian-inspired mom & baby experience in Stamford, Connecticut,
+owned by BravoByteLLC.
+
+## Repo placement (Rule Zero recap)
+
+- **Brand copy / palette / typography / imagery / page composition** → stays here.
+- **Reusable layout patterns / block components / Directus query helpers** → start here, extract to `bravobyte-frontend-core` or `bravobyte-data-core` once a second client needs them.
+- **Content contracts (block / collection types)** → live in `bravobyte-types`, never duplicated locally.
+- Never publish brand-specific copy or assets to a shared repo.
+
+## Brand voice in code and copy
+
+- Elegant, concise, emotionally warm. Polished, feminine but not flowery, premium and trustworthy.
+- Avoid: childish, cartoonish, daycare-y, corporate, cheesy, exclamation-heavy.
+- The site should feel like a boutique Italian lifestyle brand, not a kids' activity center.
+
+## Visual conventions
+
+- Palette tokens live in `src/lib/styles/tokens.css` (`--dv-color-*`, `--dv-font-*`).
+- Tailwind v4 utilities map to those tokens via `@theme` in `src/app.css` — prefer `bg-ivory text-charcoal font-display` over arbitrary hex values.
+- Subtle radii (4–8px), very soft shadows only where useful, generous whitespace.
+- Respect `prefers-reduced-motion` everywhere.
+
+## Component conventions
+
+- Default to **semantic class names** in markup; use Tailwind `@apply` in component `<style lang="postcss">` blocks for repeated styling. Mirror Starway's pattern.
+- Section components live in `src/lib/components/sections/`, navigation in `navigation/`, decoratives (olive branch, gold rule, grain) in `decor/`.
+- The homepage is **one page** composed of section components driven by Directus blocks via `BlockRenderer.svelte`.
+
+## Data
+
+- Directus is the single source of content. Site key: `dolcevita`. Site-scoped queries only — never leak Starway content into Dolce Vita and vice-versa.
+- RSVP submissions go to the Directus `rsvp_submissions` collection (created public, never publicly readable) and trigger a Resend notification to `RSVP_NOTIFY_EMAIL`.
+- Always apply the canonical [directus-collection-permissions](mdc:.cursor/rules/directus-collection-permissions.mdc) rule when creating new collections — ship the permission seed in the same change.
+
+## Workflow
+
+- Issues tracked on the [BravoByte/Dolce Vita CT Board](https://github.com/orgs/BravoByte-org/projects/4).
+- Milestones M-1 → M6 documented in [`spec.md`](mdc:spec.md).
+- Squash-merge PRs with conventional titles per the BravoByte git-history policy.
+- Update `spec.md` after every meaningful piece of work; keep it under 500 lines.

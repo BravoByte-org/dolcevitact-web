@@ -1,0 +1,7 @@
+/*
+ * Webfont registration.
+ * Self-hosted under /static/fonts in M3. For the scaffold, we load from
+ * Google Fonts to unblock visual iteration; M3 swaps to subset, self-hosted
+ * woff2 with rel=preload for performance.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Tangerine:wght@400;700&display=swap');

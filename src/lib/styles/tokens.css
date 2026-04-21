@@ -1,0 +1,39 @@
+/*
+ * Dolce Vita CT — design tokens
+ * --------------------------------------------------------------
+ * The brand palette is intentionally restrained: warm ivory paper,
+ * earthy terracotta, muted sage, sand taupe, restrained gold accents,
+ * and soft charcoal text. Every other surface should be a derivative
+ * of these. Keep this file small.
+ */
+
+:root {
+	/* Color */
+	--dv-color-ivory: #f6f1ec;
+	--dv-color-ivory-deep: #ede5db;
+	--dv-color-terracotta: #b8694b;
+	--dv-color-terracotta-soft: #d99578;
+	--dv-color-sage: #8a9a7a;
+	--dv-color-sage-soft: #b6c2a8;
+	--dv-color-taupe: #b8a88f;
+	--dv-color-gold: #c9a46b;
+	--dv-color-charcoal: #2b2a28;
+	--dv-color-charcoal-soft: #5b5853;
+
+	/* Typography */
+	--dv-font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+	--dv-font-script: 'Tangerine', 'Allura', cursive;
+	--dv-font-sans:
+		'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+	/* Spacing scale (rem) — tight rhythm for editorial layout */
+	--dv-space-section: clamp(4rem, 8vw, 8rem);
+	--dv-space-block: clamp(1.5rem, 3vw, 3rem);
+
+	/* Radii — subtle, never playful */
+	--dv-radius-sm: 4px;
+	--dv-radius-md: 8px;
+
+	/* Shadows — only where useful */
+	--dv-shadow-soft: 0 12px 32px -16px rgb(43 42 40 / 0.18);
+}
