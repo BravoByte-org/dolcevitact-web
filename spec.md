@@ -26,8 +26,9 @@ Resend · Vercel.
 
 **Shared dependencies:**
 
-- `@bravobyte/types` — shared content contracts (linked locally during
-  Phase 1 of the package strategy)
+- `@bravobyte/types` — shared content contracts. Will be added in M1 once the
+  Dolce Vita contracts are extracted and a Phase-1 distribution path is in
+  place (npm workspace at the BravoByte root or a private registry).
 - Future: `@bravobyte/frontend-core`, `@bravobyte/data-core`
 
 ---

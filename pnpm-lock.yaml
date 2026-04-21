@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@bravobyte/types':
-        specifier: file:../bravobyte-types
-        version: file:../bravobyte-types
       '@directus/sdk':
         specifier: ^20.2.0
         version: 20.3.0
@@ -89,9 +86,6 @@ importers:
         version: 4.1.4(@types/node@24.12.2)(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0))
 
 packages:
-
-  '@bravobyte/types@file:../bravobyte-types':
-    resolution: {directory: ../bravobyte-types, type: directory}
 
   '@directus/sdk@20.3.0':
     resolution: {integrity: sha512-auy59B0A7Ri+4JDy0JcdFHnsHvOkl3ixWMWYciXAbm4oYIE9S4be8xEpIwA5qhlPTOprJ6JHPWo9rEvcrLwNtA==}
@@ -1940,8 +1934,6 @@ packages:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
 snapshots:
-
-  '@bravobyte/types@file:../bravobyte-types': {}
 
   '@directus/sdk@20.3.0': {}
 
