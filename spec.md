@@ -1,9 +1,11 @@
 # dolcevitact.com — Product Spec
 
-> **Owner:** BravoByteLLC for Dolce Vita CT
-> **Domain:** https://dolcevitact.com
-> **Status:** M2 Directus schema — **complete** (migration applied + verified Apr 21 2026; see [`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md)). M4 (sections) is now the active milestone.
-> **Last Updated:** April 21, 2026
+> **Owner:** BravoByteLLC for the Dolce Vita brand
+> **Domain:** https://dolcevitact.com (the `ct` suffix is a domain-availability quirk — the brand is "Dolce Vita")
+> **First chapter:** Dolce Vita Baby Circle
+> **Brand architecture:** branded house, paths-first (see [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md))
+> **Status:** M5 RSVP intake in review (PR #28). M2 Directus schema complete + verified Apr 21 2026 ([`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md)). M4 (sections) split into M4a/b/c — all merged. M6 (Launch) is the next active milestone.
+> **Last Updated:** April 25, 2026
 
 This is the single source of truth for what `dolcevitact-web` is, why it exists,
 and where we are. It must stay under 500 lines and reference detail files
@@ -13,12 +15,18 @@ rather than duplicating them.
 
 ## 1. Project overview
 
-Dolce Vita CT is a premium Italian-inspired mom & baby experience based in
-Stamford, Connecticut. The first offering is **Dolce Vita Baby Circle**, a
-warm, refined class led by a native Italian speaker, teacher, and mom.
+**Dolce Vita** is a premium Italian-inspired lifestyle brand based in Stamford,
+Connecticut. The first chapter is **Dolce Vita Baby Circle**, a warm, refined
+mama-and-bambino class led by a native Italian speaker, teacher, and mom.
+Future chapters under consideration include cucina (homecooked Italian food
+service), online classes, and a newsletter.
 
-`dolcevitact-web` is the marketing single-page application that introduces the
-brand, explains the experience, and converts visitors into RSVPs.
+`dolcevitact-web` is the marketing single-page application that launches the
+brand, introduces the Baby Circle, and converts visitors into RSVPs. It is
+architected as a branded-house portal: the homepage currently _is_ the Baby
+Circle; new offerings will live at sibling paths (`/cucina`, `/classes`, etc.)
+on the same domain rather than as separate sites — see
+[`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md).
 
 **Tech stack:** SvelteKit 2 (Svelte 5 runes) · TypeScript · Tailwind v4 ·
 Vitest · Playwright · Directus (shared multi-site, key `dolcevita`) ·
@@ -86,7 +94,7 @@ The homepage is a single Directus `pages` row composed of M2A blocks:
 | M5  | RSVP                     | in progress | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | `?/rsvp` form action → Zod validate → Directus `rsvp_submissions` write → Resend notification + honeypot + success/error UI. Plan: [`.docs/architecture/m5-rsvp-plan.md`](./.docs/architecture/m5-rsvp-plan.md) |
 | M6  | Launch                   | planned     | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | SEO, a11y, deploy                                                                                                                                                                                               |
 
-GitHub Project board: [BravoByte/Dolce Vita CT Board](https://github.com/orgs/BravoByte-org/projects/4)
+GitHub Project board: [BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4)
 
 ---
 
@@ -110,10 +118,21 @@ Full design notes: `.docs/architecture/design-system.md` (added in M3).
 - Testimonials block
 - Blog / journal
 - Bilingual EN/IT (Directus translations layer — structural change not required)
+- Sibling brand chapters (cucina, online classes, newsletter) — covered by
+  Phase 2 of the brand-architecture ADR; ship after Baby Circle proves out.
 
 ---
 
-## 8. Operational links
+## 8. Architecture decisions
+
+| ADR  | Title                                                                                     | Status   |
+| ---- | ----------------------------------------------------------------------------------------- | -------- |
+| 0001 | [Dolce Vita delivery architecture](./.docs/adrs/0001-dolce-vita-architecture.md)          | Accepted |
+| 0002 | [Brand architecture: branded house, paths-first](./.docs/adrs/0002-brand-architecture.md) | Accepted |
+
+---
+
+## 9. Operational links
 
 | Resource            | URL                                              |
 | ------------------- | ------------------------------------------------ |

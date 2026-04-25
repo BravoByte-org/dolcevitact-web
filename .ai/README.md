@@ -1,4 +1,4 @@
-# .ai — Dolce Vita CT
+# .ai — Dolce Vita
 
 Repo-local AI configuration. Inherits from the workspace-level
 [`bravobyte-ai`](../../bravobyte-ai) repo, which holds the canonical

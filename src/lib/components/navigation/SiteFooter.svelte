@@ -6,10 +6,10 @@
 
 	let {
 		items = [],
-		siteTitle = 'Dolce Vita CT',
-		contactEmail = 'hello@dolcevitact.com',
+		siteTitle = 'Dolce Vita Baby Circle',
+		contactEmail = 'babycircle@dolcevitact.com',
 		cityLine = 'Stamford, Connecticut',
-		tagline = 'An Italian-inspired circle for mothers and babies.'
+		tagline = 'An Italian-inspired circle for mothers and babies — the first chapter of Dolce Vita.'
 	}: {
 		items?: NavItem[];
 		siteTitle?: string;
