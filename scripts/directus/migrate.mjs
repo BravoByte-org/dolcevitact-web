@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Dolce Vita CT — one-shot Directus migration (idempotent)
+ * Dolce Vita — one-shot Directus migration (idempotent)
  * ──────────────────────────────────────────────────────────────────────
  *
  * Brings the shared BravoByte Directus instance (https://cms.bravobyte.co)
@@ -262,11 +262,12 @@ async function ensureSite() {
 	}
 	console.log(`  + creating site "${SITE_KEY}"`);
 	const r = await api('POST', '/items/sites', {
-		name: 'Dolce Vita CT',
+		name: 'Dolce Vita',
 		key: SITE_KEY,
 		url: 'https://dolcevitact.com',
-		title: 'Dolce Vita CT',
-		description: 'A premium Italian-inspired mom & baby experience in Stamford, Connecticut.',
+		title: 'Dolce Vita Baby Circle',
+		description:
+			'Dolce Vita Baby Circle — an Italian-inspired mama & bambino circle in Stamford, Connecticut. The first chapter of the Dolce Vita brand.',
 		status: 'published'
 	});
 	return r.data.id;
@@ -876,7 +877,7 @@ async function seedHomepage(siteId) {
 
 	const about = await api('POST', '/items/block_rich_text', {
 		content:
-			'<p>Dolce Vita CT is a small, intentional circle for Italian-curious families — a morning of music, language, and movement designed to feel like a Sunday in Liguria.</p>'
+			'<p>The Dolce Vita Baby Circle is a small, intentional gathering for Italian-curious families — a morning of music, language, and movement designed to feel like a Sunday in Liguria.</p>'
 	});
 
 	const timeline = await api('POST', '/items/block_timeline', {
@@ -953,16 +954,17 @@ async function seedHomepage(siteId) {
 		subtitle:
 			"Spots are limited to keep the circle intimate. We'll follow up within 24 hours to confirm your reservation.",
 		success_title: "Grazie — we'll be in touch",
-		success_body: 'Your note is in. Look for an email from hello@dolcevitact.com within a day.',
+		success_body:
+			'Your note is in. Look for an email from babycircle@dolcevitact.com within a day.',
 		consent_copy:
-			"By reserving you agree to receive a follow-up email from Dolce Vita CT. We don't share your information.",
+			"By reserving you agree to receive a follow-up email from the Dolce Vita Baby Circle. We don't share your information.",
 		site: siteId,
 		sort: 0
 	});
 
 	const story = await api('POST', '/items/block_rich_text', {
 		content:
-			'<p>Dolce Vita CT exists because raising a child between two languages should feel like a gift, not a chore. Our circles are the opposite of a class — they are small rituals built around the sounds of home.</p>'
+			'<p>Dolce Vita exists because raising a child between two languages should feel like a gift, not a chore. Our Baby Circle is the opposite of a class — it is a small ritual built around the sounds of home.</p>'
 	});
 
 	const faq = await api('POST', '/items/block_faq', {
@@ -999,13 +1001,13 @@ async function seedHomepage(siteId) {
 	console.log('  + creating pages row + page_blocks M2A wiring');
 	const page = await api('POST', '/items/pages', {
 		slug: '/',
-		title: 'Dolce Vita CT',
+		title: 'Dolce Vita Baby Circle',
 		status: 'published',
 		template_type: 'homepage',
 		site: siteId,
-		seo_title: 'Dolce Vita CT — Italian-inspired mom & baby experience in Stamford, CT',
+		seo_title: 'Dolce Vita Baby Circle — Italian-inspired mama & bambino in Stamford, CT',
 		seo_description:
-			'Reserve your spot at the Dolce Vita Baby Circle — a warm, refined Italian-inspired class for moms and babies in Stamford, Connecticut.'
+			'Reserve your spot at the Dolce Vita Baby Circle — a warm, refined Italian-inspired morning for mama and bambino in Stamford, Connecticut. The first chapter of Dolce Vita.'
 	});
 
 	const blockOrder = [
@@ -1036,7 +1038,7 @@ async function seedHomepage(siteId) {
 // ──────────────────────────────────────────────────────────────────────
 
 async function main() {
-	console.log(`\nDolce Vita CT — Directus migration (${DIRECTUS_URL})`);
+	console.log(`\nDolce Vita — Directus migration (${DIRECTUS_URL})`);
 	console.log(`  mode: ${DRY_RUN ? 'DRY RUN' : 'APPLY'}`);
 	console.log(`  site: ${SITE_KEY}`);
 	console.log(`  seed: ${DO_SEED}`);

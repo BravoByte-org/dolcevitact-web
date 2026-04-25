@@ -14,16 +14,16 @@
 	const seoTitle = $derived(
 		(page?.seo_title as string | undefined) ??
 			(page?.title as string | undefined) ??
-			'Dolce Vita CT'
+			'Dolce Vita Baby Circle'
 	);
 	const seoDescription = $derived(
 		(page?.seo_description as string | undefined) ??
-			'A premium Italian-inspired mom & baby experience in Stamford, CT.'
+			'An Italian-inspired morning for mama and bambino in Stamford, CT — the first chapter of Dolce Vita.'
 	);
 </script>
 
 <svelte:head>
-	<title>{seoTitle} | Dolce Vita CT</title>
+	<title>{seoTitle} | Dolce Vita Baby Circle</title>
 	<meta name="description" content={seoDescription} />
 </svelte:head>
 
@@ -33,7 +33,9 @@
 	<!--
 		Fallback: if Directus is unreachable or the seeded page hasn't landed
 		yet, render the M3 editorial placeholder so production never shows a
-		blank page on a CMS hiccup.
+		blank page on a CMS hiccup. The script accent uses the parent brand
+		("Dolce Vita") with the offering name in the headline below — matches
+		the branded-house framing recorded in ADR 0002.
 	-->
 	<section class="dv-fallback">
 		<div class="dv-fallback__inner">
@@ -41,18 +43,19 @@
 			<div class="dv-fallback__olive">
 				<OliveBranch tone="sage" />
 			</div>
-			<p class="dv-script mt-2">Dolce Vita CT</p>
+			<p class="dv-script mt-2">Dolce Vita</p>
 			<h1 class="dv-h1 dv-anim-rise mt-4 text-balance">
-				An Italian-inspired moment for mama e bambino
+				An Italian-inspired morning for mama e bambino
 			</h1>
 			<div class="mt-6">
 				<GoldRule size="md" />
 			</div>
 			<p class="dv-lede dv-anim-rise mx-auto mt-8 text-balance">
-				A warm, refined Italian circle for mothers and babies — coming this spring in Stamford.
+				The Baby Circle — a warm, refined Italian circle for mothers and babies, coming this spring
+				in Stamford.
 			</p>
 			<a
-				href="mailto:hello@dolcevitact.com?subject=Dolce%20Vita%20CT%20early%20list"
+				href="mailto:babycircle@dolcevitact.com?subject=Dolce%20Vita%20Baby%20Circle%20early%20list"
 				class="dv-fallback__cta">Be the first to know</a
 			>
 		</div>

@@ -12,16 +12,16 @@
 	const site = $derived(
 		(data.site as { title?: string | null; description?: string | null } | null) ?? null
 	);
-	const siteTitle = $derived(site?.title ?? 'Dolce Vita CT');
+	const siteTitle = $derived(site?.title ?? 'Dolce Vita Baby Circle');
 	const navItems = $derived(((data.navigation ?? []) as NavItem[]) ?? []);
 </script>
 
 <svelte:head>
-	<title>{siteTitle} — Italian-inspired mom & baby experience in Stamford, CT</title>
+	<title>{siteTitle} — Italian-inspired mama & bambino circle in Stamford, CT</title>
 	<meta
 		name="description"
 		content={site?.description ??
-			'Dolce Vita CT is a premium Italian-inspired mom & baby experience in Stamford, Connecticut. Reserve your spot at the Dolce Vita Baby Circle.'}
+			'Dolce Vita Baby Circle — an Italian-inspired morning of music, language, and movement for mama and bambino in Stamford, Connecticut. The first chapter of Dolce Vita.'}
 	/>
 	<link rel="canonical" href="https://dolcevitact.com/" />
 	<meta property="og:type" content="website" />

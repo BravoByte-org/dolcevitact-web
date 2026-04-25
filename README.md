@@ -1,8 +1,14 @@
 # dolcevitact-web
 
-Marketing site for **Dolce Vita CT** at [dolcevitact.com](https://dolcevitact.com),
-a premium Italian-inspired mom & baby experience in Stamford, Connecticut.
-Owned and operated by **BravoByteLLC**.
+Marketing site for the **Dolce Vita** brand at
+[dolcevitact.com](https://dolcevitact.com), launching with our first chapter:
+the **Dolce Vita Baby Circle** — an Italian-inspired mama & bambino circle in
+Stamford, Connecticut. Owned and operated by **BravoByteLLC**.
+
+> Brand architecture: branded house, paths-first. The current site _is_ the
+> Baby Circle; future offerings (e.g. cucina, online classes, newsletters) live
+> at sibling paths like `dolcevitact.com/cucina` rather than separate domains
+> or subdomains. See [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md).
 
 Part of the [BravoByte](../bravobyte-ai) ecosystem. This is a **delivery
 repo** — it composes shared modules and stays thin. See
@@ -82,7 +88,7 @@ Strategize → Architect → Verify plan → Build → Verify code → Capture �
 Update.
 
 Issues are tracked on the
-[BravoByte/Dolce Vita CT Board](https://github.com/orgs/BravoByte-org/projects/4).
+[BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4).
 Work follows the milestones M-1 → M6 documented in
 [`spec.md`](./spec.md#5-milestones).
 
