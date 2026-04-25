@@ -12,7 +12,7 @@
 <section class="dv-stats">
 	<div class="dv-stats__inner">
 		{#if data.title}
-			<h2 class="dv-h2 mb-10 text-center">{data.title}</h2>
+			<h2 class="dv-stats__title dv-h2">{data.title}</h2>
 		{/if}
 		{#if stats.length > 0}
 			<dl class="dv-stats__grid">
@@ -27,35 +27,32 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-stats {
 		padding: clamp(3rem, 8vw, 5rem) 1.5rem;
 	}
 
 	.dv-stats__inner {
-		margin-inline: auto;
-		max-width: 64rem;
+		@apply mx-auto max-w-[64rem];
+	}
+
+	.dv-stats__title {
+		@apply mb-10 text-center;
 	}
 
 	.dv-stats__grid {
-		display: grid;
-		gap: 2rem;
+		@apply grid gap-8 text-center;
 		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-		text-align: center;
 	}
 
 	.dv-stats__value {
-		font-family: var(--dv-font-display);
+		@apply text-terracotta-deep font-display;
 		font-size: var(--dv-text-h2, 2.5rem);
-		color: var(--dv-color-terracotta-deep);
 	}
 
 	.dv-stats__label {
-		margin-top: 0.5rem;
-		font-family: var(--dv-font-sans);
-		font-size: 0.75rem;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-		color: var(--dv-color-charcoal-mute);
+		@apply text-charcoal-mute mt-2 font-sans text-xs tracking-[0.18em] uppercase;
 	}
 </style>

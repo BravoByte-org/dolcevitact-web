@@ -44,11 +44,14 @@
 			border-color var(--dv-duration-fast) var(--dv-ease-soft);
 	}
 
-	.dv-hamburger:hover,
-	.dv-hamburger:focus-visible {
+	.dv-hamburger:hover {
 		background: color-mix(in srgb, var(--dv-color-gold) 12%, transparent);
 		border-color: color-mix(in srgb, var(--dv-color-gold) 40%, transparent);
-		outline: none;
+	}
+
+	.dv-hamburger:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 2px;
 	}
 
 	.dv-hamburger__line {

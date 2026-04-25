@@ -30,13 +30,13 @@
 	<div class="dv-team__inner">
 		<header class="dv-team__header">
 			{#if data.eyebrow}
-				<p class="dv-eyebrow">{data.eyebrow}</p>
+				<p class="dv-team__eyebrow dv-eyebrow">{data.eyebrow}</p>
 			{/if}
 			{#if data.title}
-				<h2 class="dv-h2 mt-3">{data.title}</h2>
+				<h2 class="dv-team__title dv-h2">{data.title}</h2>
 			{/if}
 			{#if data.subtitle}
-				<p class="dv-lede mx-auto mt-4 text-balance">{data.subtitle}</p>
+				<p class="dv-team__subtitle dv-lede">{data.subtitle}</p>
 			{/if}
 		</header>
 
@@ -69,71 +69,57 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
+	@reference '../../../app.css';
+
 	.dv-team {
 		padding: clamp(3.5rem, 9vw, 6rem) 1.5rem;
 	}
 
 	.dv-team__inner {
-		margin-inline: auto;
-		max-width: 60rem;
+		@apply mx-auto max-w-[60rem];
 	}
 
 	.dv-team__header {
-		text-align: center;
-		margin-bottom: 3rem;
+		@apply mb-12 text-center;
+	}
+
+	.dv-team__title {
+		@apply mt-3;
+	}
+
+	.dv-team__subtitle {
+		@apply mx-auto mt-4 text-balance;
 	}
 
 	.dv-team__grid {
-		display: grid;
-		gap: 3rem;
+		@apply grid gap-12;
 		grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 	}
 
 	.dv-team__card {
-		text-align: center;
+		@apply text-center;
 	}
 
 	.dv-team__portrait {
-		display: block;
-		margin-inline: auto;
-		width: 10rem;
-		height: 10rem;
-		border-radius: 9999px;
-		object-fit: cover;
-		box-shadow: var(--dv-shadow-card);
+		@apply shadow-card mx-auto block h-40 w-40 rounded-full object-cover;
 	}
 
 	.dv-team__portrait--placeholder {
+		@apply font-script text-terracotta-deep flex items-center justify-center text-[3.5rem];
 		background: color-mix(in srgb, var(--dv-color-sage) 25%, var(--dv-color-ivory));
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: var(--dv-font-script, serif);
-		font-size: 3.5rem;
-		color: var(--dv-color-terracotta-deep);
 	}
 
 	.dv-team__name {
-		margin-top: 1.25rem;
-		font-family: var(--dv-font-display);
-		font-size: 1.5rem;
-		color: var(--dv-color-charcoal);
+		@apply text-charcoal font-display mt-5 text-2xl;
 	}
 
 	.dv-team__role {
-		margin-top: 0.25rem;
-		font-family: var(--dv-font-sans);
-		font-size: 0.75rem;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--dv-color-charcoal-mute);
+		@apply text-charcoal-mute mt-1 font-sans text-xs tracking-[0.16em] uppercase;
 	}
 
 	.dv-team__bio {
-		margin-top: 1rem;
-		font-family: var(--dv-font-sans);
+		@apply text-charcoal-soft mt-4 font-sans;
 		line-height: 1.65;
-		color: var(--dv-color-charcoal-soft);
 	}
 </style>

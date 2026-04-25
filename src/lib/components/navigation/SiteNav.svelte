@@ -237,6 +237,12 @@
 		color: var(--dv-color-terracotta-deep);
 	}
 
+	.dv-nav__link:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+
 	.dv-nav__cta {
 		margin-left: 0.5rem;
 		padding: 0.65rem 1.35rem;
@@ -253,6 +259,11 @@
 
 	.dv-nav__cta:hover {
 		background: var(--dv-color-terracotta-deep);
+	}
+
+	.dv-nav__cta:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 4px;
 	}
 
 	.dv-nav__mobile-trigger {
@@ -344,6 +355,17 @@
 
 	.dv-nav__panel-link:hover {
 		color: var(--dv-color-terracotta-deep);
+	}
+
+	.dv-nav__panel-link:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+
+	.dv-nav__panel-cta:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 4px;
 	}
 
 	.dv-nav__panel-cta {

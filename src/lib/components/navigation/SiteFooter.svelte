@@ -174,6 +174,12 @@
 		color: var(--dv-color-terracotta-deep);
 	}
 
+	.dv-footer__link:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+
 	.dv-footer__email {
 		display: block;
 		font-family: var(--dv-font-display);
@@ -186,6 +192,12 @@
 		text-decoration: underline;
 		text-underline-offset: 4px;
 		text-decoration-color: color-mix(in srgb, var(--dv-color-terracotta) 50%, transparent);
+	}
+
+	.dv-footer__email:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 4px;
+		border-radius: 2px;
 	}
 
 	.dv-footer__city {
