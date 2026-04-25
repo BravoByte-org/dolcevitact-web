@@ -1,4 +1,4 @@
-# Directus migration runbook — Dolce Vita CT
+# Directus migration runbook — Dolce Vita
 
 One-shot migration that brings the shared BravoByte Directus instance
 (`https://cms.bravobyte.co`) into the shape `dolcevitact-web` expects. The

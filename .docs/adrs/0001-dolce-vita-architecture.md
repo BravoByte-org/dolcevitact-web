@@ -1,15 +1,21 @@
-# ADR 0001 — Dolce Vita CT delivery architecture
+# ADR 0001 — Dolce Vita delivery architecture
 
 - **Status:** Accepted
 - **Date:** 2026-04-21
+- **Last revised:** 2026-04-25 (brand naming clarified; superseded in spirit by [ADR 0002](./0002-brand-architecture.md))
 - **Deciders:** Lion (Architect persona: Orion)
 - **Context:** Initial scaffold of `dolcevitact-web` for the dolcevitact.com launch.
 
 ## Context
 
-BravoByte received a second client engagement (Dolce Vita CT) requiring a
-boutique, premium marketing single-page application backed by a content
-management system, with an RSVP-capture flow as the primary conversion goal.
+BravoByte received a second client engagement, the **Dolce Vita** brand
+(launching with the Dolce Vita Baby Circle offering at `dolcevitact.com` —
+the `ct` suffix is a domain-availability quirk, not part of the brand).
+The brand requires a boutique, premium marketing single-page application
+backed by a content management system, with an RSVP-capture flow as the
+primary conversion goal. Brand architecture decisions (paths-first vs.
+subdomains, naming hierarchy) are recorded separately in
+[ADR 0002](./0002-brand-architecture.md).
 
 The original brief proposed React/Next.js. The BravoByte house stack is
 SvelteKit + Tailwind + TypeScript + Directus, already in production at

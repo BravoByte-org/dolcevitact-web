@@ -5,7 +5,7 @@
 
 	let {
 		items = [],
-		siteTitle = 'Dolce Vita CT',
+		siteTitle = 'Dolce Vita Baby Circle',
 		ctaLabel = 'Reserve',
 		ctaHref = '#rsvp'
 	}: {
