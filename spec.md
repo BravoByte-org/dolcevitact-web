@@ -4,7 +4,7 @@
 > **Domain:** https://dolcevitact.com (the `ct` suffix is a domain-availability quirk — the brand is "Dolce Vita")
 > **First chapter:** Dolce Vita Baby Circle
 > **Brand architecture:** branded house, paths-first (see [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md))
-> **Status:** M5 RSVP intake in review (PR #28). M2 Directus schema complete + verified Apr 21 2026 ([`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md)). M4 (sections) split into M4a/b/c — all merged. M6 (Launch) is the next active milestone.
+> **Status:** M0–M5 complete. Brand rename + ADR 0002 merged (PR #30). Canonical brand lockup component shipped (PR #33, closes #32). **M6 Launch in progress** — split into M6a (analytics) → M6b (SEO) → M6c (a11y/perf) → M6d (security headers) → M6e (release cut).
 > **Last Updated:** April 25, 2026
 
 This is the single source of truth for what `dolcevitact-web` is, why it exists,
@@ -64,35 +64,37 @@ configuration. Repo-local rules live in `.cursor/rules/` (when added).
 
 ## 4. Sections
 
-The homepage is a single Directus `pages` row composed of M2A blocks:
+The homepage is a single Directus `pages` row composed of M2A blocks. All
+section blocks shipped through M4a/b/c. The brand mark above the hero ships
+via the canonical `BrandLockup` component (M6, PR #33).
 
-| Section                  | Block                                 | Status             |
-| ------------------------ | ------------------------------------- | ------------------ |
-| Hero                     | `block_hero`                          | pending (M2/M4)    |
-| About the experience     | `block_card_group`                    | pending            |
-| How it works             | `block_timeline`                      | pending            |
-| Who it's for             | `block_card_group`                    | pending            |
-| Founder                  | `block_team` (single member)          | pending            |
-| Event details            | `block_event_details` (NEW)           | pending (M1/M2)    |
-| RSVP                     | `block_rsvp_form` (NEW)               | pending (M1/M2/M5) |
-| Brand story / philosophy | `block_rich_text`                     | pending            |
-| FAQ                      | `block_faq` + `block_faq_items` (NEW) | pending (M1/M2)    |
-| Footer                   | layout component                      | pending            |
+| Section                  | Block                               | Status                  |
+| ------------------------ | ----------------------------------- | ----------------------- |
+| Hero                     | `block_hero` + `BrandLockup`        | done (M4a/c, M6 lockup) |
+| About the experience     | `block_card_group`                  | done (M4a/c)            |
+| How it works             | `block_timeline`                    | done (M4a/c)            |
+| Who it's for             | `block_card_group`                  | done (M4a/c)            |
+| Founder                  | `block_team` (single member)        | done (M4a/c)            |
+| Event details            | `block_event_details`               | done (M1/M2/M4)         |
+| RSVP                     | `block_rsvp_form` + `?/rsvp` action | done (M1/M2/M5)         |
+| Brand story / philosophy | `block_rich_text`                   | done (M4a/c)            |
+| FAQ                      | `block_faq` + `block_faq_items`     | done (M1/M2/M4)         |
+| Sticky nav + footer      | `SiteNav` + `SiteFooter`            | done (M4b)              |
 
 ---
 
 ## 5. Milestones
 
-| ID  | Name                     | Status      | GitHub Milestone                                                   | Notes                                                                                                                                                                                                           |
-| --- | ------------------------ | ----------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| M-1 | GitHub workspace         | done        | —                                                                  | Repo, labels, templates, board, epics, stories                                                                                                                                                                  |
-| M0  | Foundation               | in progress | [#1](https://github.com/BravoByte-org/dolcevitact-web/milestone/1) | Scaffold + Directus site row + Vercel + DNS                                                                                                                                                                     |
-| M1  | Shared content contracts | in review   | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension (types PR #2)                                                                                                                                                                      |
-| M2  | Directus schema          | done        | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration applied + verified Apr 21 2026 (runlog: [`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md))                                                                    |
-| M3  | Design system            | done        | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16 merged)                                                                                                                                                                     |
-| M4  | Sections                 | in progress | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | M4a block shell + M4b nav merged. M4a-polish: rule-compliant `@apply` refactor + a11y smoke — styling guide: [`.docs/architecture/block-styling-guide.md`](./.docs/architecture/block-styling-guide.md)         |
-| M5  | RSVP                     | in progress | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | `?/rsvp` form action → Zod validate → Directus `rsvp_submissions` write → Resend notification + honeypot + success/error UI. Plan: [`.docs/architecture/m5-rsvp-plan.md`](./.docs/architecture/m5-rsvp-plan.md) |
-| M6  | Launch                   | planned     | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | SEO, a11y, deploy                                                                                                                                                                                               |
+| ID  | Name                     | Status      | GitHub Milestone                                                   | Notes                                                                                                                                                                                                                                                                                            |
+| --- | ------------------------ | ----------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| M-1 | GitHub workspace         | done        | —                                                                  | Repo, labels, templates, board, epics, stories                                                                                                                                                                                                                                                   |
+| M0  | Foundation               | done        | [#1](https://github.com/BravoByte-org/dolcevitact-web/milestone/1) | Scaffold + Directus `dolcevita` site row + Vercel + DNS (DNS verified by founder)                                                                                                                                                                                                                |
+| M1  | Shared content contracts | done        | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension shipped + consumed                                                                                                                                                                                                                                                  |
+| M2  | Directus schema          | done        | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration applied + verified Apr 21 2026 (runlog: [`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md))                                                                                                                                                     |
+| M3  | Design system            | done        | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16)                                                                                                                                                                                                                                                             |
+| M4  | Sections                 | done        | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | M4a block shell (PR #20), M4b sticky nav + drawer (PR #23), M4c full styling + a11y smoke (PR #26). Styling guide: [`.docs/architecture/block-styling-guide.md`](./.docs/architecture/block-styling-guide.md)                                                                                    |
+| M5  | RSVP                     | done        | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | `?/rsvp` form action → Zod validate → Directus `rsvp_submissions` write → Resend notification + honeypot + success/error UI (PR #28). Brand rename promoted via PR #30 (recovery from stranded stack). Plan: [`.docs/architecture/m5-rsvp-plan.md`](./.docs/architecture/m5-rsvp-plan.md)        |
+| M6  | Launch                   | in progress | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | Brand lockup component done (PR #33). Remaining: M6a Vercel Analytics + Speed Insights (#21) → M6b SEO/OG/JSON-LD/sitemap (#12 part 1) → M6c a11y + perf + Lighthouse ≥95 (#12 part 2) → M6d `vercel.json` security headers (#13 part 1) → M6e release cut + DNS verify + RSVP smoke (#13 + #24) |
 
 GitHub Project board: [BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4)
 
