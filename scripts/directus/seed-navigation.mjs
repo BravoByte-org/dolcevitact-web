@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * Dolce Vita CT — navigation seed
+ * Dolce Vita — navigation seed
  * --------------------------------------------------------------
  * Idempotent upsert of the `header` navigation row + its section
  * anchor items for the `dolcevita` site. Re-runnable safely; if

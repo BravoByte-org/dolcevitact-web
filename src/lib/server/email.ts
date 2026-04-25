@@ -47,7 +47,7 @@ export async function sendRsvpNotification(payload: RsvpNotification): Promise<S
 	if (!resend) return { sent: false, reason: 'disabled' };
 
 	const to = env.RSVP_NOTIFY_EMAIL;
-	const from = env.RSVP_NOTIFY_FROM || 'Dolce Vita CT <reservations@dolcevitact.com>';
+	const from = env.RSVP_NOTIFY_FROM || 'Dolce Vita Baby Circle <reservations@ciao.dolcevitact.com>';
 	if (!to) {
 		console.warn('[email] RSVP_NOTIFY_EMAIL not set — skipping email notification.');
 		return { sent: false, reason: 'misconfigured' };
@@ -101,7 +101,7 @@ function renderNotificationHtml(p: RsvpNotification): string {
 		<table role="presentation" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#fffbf6;border:1px solid #e7ddcf;border-radius:12px;padding:32px;">
 			<tr>
 				<td>
-					<p style="margin:0 0 4px;font-family:Georgia,serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#a07a4d;">Dolce Vita CT</p>
+					<p style="margin:0 0 4px;font-family:Georgia,serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#a07a4d;">Dolce Vita Baby Circle</p>
 					<h1 style="margin:0 0 24px;font-family:Georgia,serif;font-size:26px;font-weight:400;color:#2d2a26;">New RSVP received</h1>
 					<table role="presentation" cellpadding="0" cellspacing="0">
 						${renderRow('Name', p.name)}
@@ -122,7 +122,7 @@ function renderNotificationHtml(p: RsvpNotification): string {
 
 function renderNotificationText(p: RsvpNotification): string {
 	const lines = [
-		'New RSVP received — Dolce Vita CT',
+		'New RSVP received — Dolce Vita Baby Circle',
 		'',
 		`Name:       ${p.name}`,
 		`Email:      ${p.email}`,

@@ -78,7 +78,7 @@
 				{#if hasServerError}
 					<p class="dv-rsvp__alert" role="alert">
 						Something interrupted us on our side. Please try again in a moment — or email
-						hello@dolcevitact.com and we'll get you on the list.
+						babycircle@dolcevitact.com and we'll get you on the list.
 					</p>
 				{/if}
 

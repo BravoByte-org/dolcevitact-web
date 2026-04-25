@@ -9,7 +9,7 @@ import {
 import { env } from '$env/dynamic/private';
 
 /**
- * Typed schema for the Dolce Vita CT view of the shared BravoByte Directus
+ * Typed schema for the Dolce Vita view of the shared BravoByte Directus
  * instance at https://cms.bravobyte.co. Only collections this delivery app
  * actually reads are declared — everything else goes through the SDK as
  * `Record<string, unknown>` which we never rely on.
