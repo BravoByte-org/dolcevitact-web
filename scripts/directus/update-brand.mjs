@@ -212,15 +212,30 @@ async function updateHero(page) {
 		return;
 	}
 	console.log('\n· block_hero (script accent)');
-	const hero = await findOne('block_hero', { id: { _eq: heroEntry.item } }, [
-		'id',
-		'script_accent',
-		'headline'
-	]);
+	// Some BravoByte sites' `block_hero` shape doesn't include a
+	// `script_accent` field — Dolce Vita's homepage uses the parent-brand
+	// script accent purely in the SvelteKit fallback (`src/routes/(app)/+page.svelte`).
+	// We probe for the field first so the script stays useful across schema variants.
+	let hero;
+	try {
+		hero = await findOne('block_hero', { id: { _eq: heroEntry.item } }, [
+			'id',
+			'script_accent',
+			'headline'
+		]);
+	} catch (err) {
+		const message = err?.payload?.errors?.[0]?.message ?? '';
+		const missingField = err?.status === 403 && /field "script_accent"/.test(message);
+		if (missingField) {
+			console.log(
+				'  ≡ block_hero has no `script_accent` field in this Directus schema — script-accent framing lives only in the SvelteKit fallback (no CMS update needed).'
+			);
+			skipCount++;
+			return;
+		}
+		throw err;
+	}
 	if (!hero) return;
-	// Always force the script accent to the parent brand — that's the
-	// branded-house framing recorded in ADR 0002. This intentionally
-	// overrides any prior "Dolce Vita CT" string.
 	if (hero.script_accent !== 'Dolce Vita') {
 		await overwriteFields(
 			'block_hero',
