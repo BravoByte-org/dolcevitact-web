@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import BlockRenderer from '$components/blocks/BlockRenderer.svelte';
+	import BrandLockup from '$components/brand/BrandLockup.svelte';
 	import GoldRule from '$components/decor/GoldRule.svelte';
 	import OliveBranch from '$components/decor/OliveBranch.svelte';
 	import type { Block } from '$components/blocks/types';
@@ -33,9 +34,9 @@
 	<!--
 		Fallback: if Directus is unreachable or the seeded page hasn't landed
 		yet, render the M3 editorial placeholder so production never shows a
-		blank page on a CMS hiccup. The script accent uses the parent brand
-		("Dolce Vita") with the offering name in the headline below — matches
-		the branded-house framing recorded in ADR 0002.
+		blank page on a CMS hiccup. The canonical Dolce Vita / Baby Circle
+		lockup carries the brand identity; the H1 below remains the page's
+		descriptive headline (one H1 per page, brand mark stays decorative).
 	-->
 	<section class="dv-fallback">
 		<div class="dv-fallback__inner">
@@ -43,8 +44,10 @@
 			<div class="dv-fallback__olive">
 				<OliveBranch tone="sage" />
 			</div>
-			<p class="dv-script mt-2">Dolce Vita</p>
-			<h1 class="dv-h1 dv-anim-rise mt-4 text-balance">
+			<div class="dv-fallback__lockup">
+				<BrandLockup variant="hero" />
+			</div>
+			<h1 class="dv-h1 dv-anim-rise mt-8 text-balance">
 				An Italian-inspired morning for mama e bambino
 			</h1>
 			<div class="mt-6">
@@ -77,6 +80,12 @@
 		margin-inline: auto;
 		margin-top: 2rem;
 		width: 12rem;
+	}
+
+	.dv-fallback__lockup {
+		display: flex;
+		justify-content: center;
+		margin-top: 1.5rem;
 	}
 
 	.dv-fallback__cta {

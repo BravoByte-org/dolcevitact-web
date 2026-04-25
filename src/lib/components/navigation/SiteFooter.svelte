@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import BrandLockup from '$components/brand/BrandLockup.svelte';
 	import GoldRule from '$components/decor/GoldRule.svelte';
 	import OliveBranch from '$components/decor/OliveBranch.svelte';
 	import type { NavItem, NavChild } from './types';
@@ -48,7 +49,9 @@
 			<div class="dv-footer__olive" aria-hidden="true">
 				<OliveBranch tone="sage" />
 			</div>
-			<p class="dv-footer__script">{siteTitle}</p>
+			<div class="dv-footer__lockup">
+				<BrandLockup variant="footer" />
+			</div>
 			<p class="dv-footer__tagline">{tagline}</p>
 		</div>
 
@@ -127,11 +130,15 @@
 		}
 	}
 
-	.dv-footer__script {
-		font-family: var(--dv-font-script);
-		font-size: clamp(2.5rem, 1.6rem + 2vw, 3.5rem);
-		color: var(--dv-color-terracotta-deep);
-		line-height: 1;
+	.dv-footer__lockup {
+		display: flex;
+		justify-content: center;
+	}
+
+	@media (min-width: 720px) {
+		.dv-footer__lockup {
+			justify-content: flex-start;
+		}
 	}
 
 	.dv-footer__tagline {
