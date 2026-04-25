@@ -90,10 +90,10 @@
 	}
 
 	.dv-hero__cta {
-		@apply bg-terracotta text-ivory shadow-soft mt-12 inline-flex items-center rounded-full px-8 py-[0.9rem] font-sans text-[0.8rem] tracking-[0.14em] uppercase transition-colors;
+		@apply bg-terracotta-deep shadow-soft mt-12 inline-flex items-center rounded-full px-8 py-[0.9rem] font-sans text-[0.8rem] tracking-[0.14em] text-white uppercase transition-colors;
 
 		&:hover {
-			@apply bg-terracotta-deep;
+			background: color-mix(in srgb, var(--dv-color-terracotta-deep) 85%, #000);
 		}
 
 		&:focus-visible {

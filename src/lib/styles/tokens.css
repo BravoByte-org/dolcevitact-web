@@ -26,7 +26,11 @@
 	--dv-color-gold-deep: #a98448;
 	--dv-color-charcoal: #2b2a28;
 	--dv-color-charcoal-soft: #5b5853;
-	--dv-color-charcoal-mute: #8a8680;
+	/* Slightly deeper than 2010-era "40% grey" mutes: ≥4.5:1 on ivory
+	   AND on warm footer surfaces (#ede5db mix) for WCAG 2.1 AA body copy. */
+	--dv-color-charcoal-mute: #6a6560;
+	/* "Baby Circle" + sage labels on the warm footer bar — 4.5:1+ on #ede5db / mix */
+	--dv-color-sage-ink: #3d4a35;
 
 	/* ------------------------------------------------------------- */
 	/* Typography                                                     */

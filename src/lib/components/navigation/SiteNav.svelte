@@ -250,8 +250,9 @@
 	.dv-nav__cta {
 		margin-left: 0.5rem;
 		padding: 0.65rem 1.35rem;
-		background: var(--dv-color-terracotta);
-		color: var(--dv-color-ivory);
+		/* White on mid terracotta fails 4.5:1 at small caps — deep fill is the AA-safe default. */
+		background: var(--dv-color-terracotta-deep);
+		color: #fff;
 		font-family: var(--dv-font-sans);
 		font-size: 0.72rem;
 		letter-spacing: var(--dv-tracking-eyebrow);
@@ -262,7 +263,7 @@
 	}
 
 	.dv-nav__cta:hover {
-		background: var(--dv-color-terracotta-deep);
+		background: color-mix(in srgb, var(--dv-color-terracotta-deep) 88%, #000);
 	}
 
 	.dv-nav__cta:focus-visible {
@@ -376,14 +377,18 @@
 		margin-top: 3rem;
 		align-self: center;
 		padding: 0.9rem 2rem;
-		background: var(--dv-color-terracotta);
-		color: var(--dv-color-ivory);
+		background: var(--dv-color-terracotta-deep);
+		color: #fff;
 		font-family: var(--dv-font-sans);
 		font-size: 0.8rem;
 		letter-spacing: var(--dv-tracking-eyebrow);
 		text-transform: uppercase;
 		border-radius: 9999px;
 		text-decoration: none;
+	}
+
+	.dv-nav__panel-cta:hover {
+		background: color-mix(in srgb, var(--dv-color-terracotta-deep) 88%, #000);
 	}
 
 	.dv-nav__panel-meta {
@@ -393,7 +398,7 @@
 		font-size: 0.72rem;
 		letter-spacing: var(--dv-tracking-eyebrow);
 		text-transform: uppercase;
-		color: var(--dv-color-charcoal-mute);
+		color: var(--dv-color-charcoal-soft);
 	}
 
 	:global(.dv-scroll-locked) {

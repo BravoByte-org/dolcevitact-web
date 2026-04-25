@@ -31,6 +31,29 @@
 	);
 	const siteTitle = $derived(site?.title ?? 'Dolce Vita Baby Circle');
 	const navItems = $derived(((data.navigation ?? []) as NavItem[]) ?? []);
+
+	/**
+	 * Google Fonts CSS 2.0 URL — the three families the design system uses
+	 * (display serif, body sans, script accent). `display=swap` keeps text
+	 * visible while files download.
+	 * Loaded *non-blockingly* via `rel=preload` + onload → `rel=stylesheet`
+	 * + `<noscript>` fallback so first paint is not held on the font CSS
+	 * round-trip. Preconnect in `<head>` still warms the TCP/TLS to
+	 * `fonts.gstatic.com` for the woff2 fetches.
+	 */
+	const GOOGLE_FONTS_STYLESHEET =
+		'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Tangerine:wght@400;700&display=swap';
+
+	/**
+	 * Flip `rel=preload` → `rel=stylesheet` once the Google Fonts CSS has
+	 * finished downloading, keeping first paint off the critical request chain.
+	 */
+	function onFontStylesheetLoad(e: Event) {
+		const el = e.currentTarget;
+		if (!(el instanceof HTMLLinkElement)) return;
+		el.onload = null;
+		el.rel = 'stylesheet';
+	}
 </script>
 
 <svelte:head>
@@ -55,10 +78,10 @@
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<link
-		rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Tangerine:wght@400;700&display=swap"
-	/>
+	<link rel="preload" href={GOOGLE_FONTS_STYLESHEET} as="style" onload={onFontStylesheetLoad} />
+	<noscript>
+		<link rel="stylesheet" href={GOOGLE_FONTS_STYLESHEET} />
+	</noscript>
 </svelte:head>
 
 <Grain />
@@ -68,7 +91,7 @@
 <div class="dv-shell">
 	<SiteNav items={navItems} {siteTitle} />
 
-	<main id="main" class="dv-shell__main">
+	<main id="main" class="dv-shell__main" tabindex="-1">
 		{@render children?.()}
 	</main>
 

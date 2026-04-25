@@ -19,7 +19,13 @@ test.describe('@a11y mobile nav drawer', () => {
 	test('has no WCAG AA violations when open', async ({ page }) => {
 		await page.goto('/');
 		await page.getByRole('button', { name: /menu/i }).click();
+		const panel = page.locator('#dv-nav-mobile-panel');
 		await expect(page.getByRole('dialog', { name: 'Main menu' })).toBeVisible();
+		// The drawer eases in with opacity. Axe must run after the transition
+		// completes — otherwise CTA/background colors are sampled mid-fade
+		// and color-contrast fails on blended values.
+		await expect(panel).toHaveClass(/dv-nav__panel--open/);
+		await expect(panel).toHaveCSS('opacity', '1');
 
 		const results = await new AxeBuilder({ page })
 			.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -39,12 +45,15 @@ test.describe('@a11y mobile nav drawer', () => {
 	test('Esc closes drawer and restores focus to hamburger', async ({ page }) => {
 		await page.goto('/');
 		const trigger = page.getByRole('button', { name: /menu/i });
+		const panel = page.locator('#dv-nav-mobile-panel');
 		await trigger.click();
-		await expect(page.getByRole('dialog')).toBeVisible();
+		await expect(page.getByRole('dialog', { name: 'Main menu' })).toBeVisible();
 
 		await page.keyboard.press('Escape');
 
-		await expect(page.getByRole('dialog')).toHaveAttribute('aria-hidden', 'true');
+		// When `aria-hidden="true"`, `getByRole('dialog')` no longer matches —
+		// the node is pruned from the a11y tree. Assert on the id instead.
+		await expect(panel).toHaveAttribute('aria-hidden', 'true');
 		await expect(trigger).toBeFocused();
 	});
 

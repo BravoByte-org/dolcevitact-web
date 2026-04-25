@@ -82,10 +82,10 @@
 	}
 
 	.dv-cta__primary {
-		@apply bg-terracotta text-ivory;
+		@apply bg-terracotta-deep text-white;
 
 		&:hover {
-			@apply bg-terracotta-deep;
+			background: color-mix(in srgb, var(--dv-color-terracotta-deep) 85%, #000);
 		}
 	}
 

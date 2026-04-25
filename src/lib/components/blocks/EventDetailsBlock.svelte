@@ -142,11 +142,11 @@
 	}
 
 	.dv-event__cta {
-		@apply bg-terracotta text-ivory inline-flex items-center rounded-full px-8 py-[0.9rem] font-sans text-[0.8rem] tracking-[0.14em] uppercase;
+		@apply bg-terracotta-deep inline-flex items-center rounded-full px-8 py-[0.9rem] font-sans text-[0.8rem] tracking-[0.14em] text-white uppercase;
 		transition: background-color var(--dv-duration-base) var(--dv-ease-soft);
 
 		&:hover {
-			@apply bg-terracotta-deep;
+			background: color-mix(in srgb, var(--dv-color-terracotta-deep) 85%, #000);
 		}
 
 		&:focus-visible {

@@ -90,3 +90,29 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
+
+  e2e-a11y:
+    name: E2E a11y (Chromium)
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+      - name: Start preview + run axe smoke
+        run: |
+          pnpm preview > /dev/null 2>&1 & echo $! > /tmp/preview.pid
+          pnpm exec wait-on -t 120000 http://localhost:4002
+          PW_NO_WEBSERVER=1 pnpm test:a11y:chromium
+          kill $(cat /tmp/preview.pid) 2>/dev/null || true
+        env:
+          PW_NO_WEBSERVER: '1'
+          CI: true

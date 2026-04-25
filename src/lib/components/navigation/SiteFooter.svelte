@@ -160,6 +160,14 @@
 		margin-bottom: 1rem;
 	}
 
+	.dv-footer :global(.dv-eyebrow) {
+		color: var(--dv-color-charcoal-soft);
+	}
+
+	.dv-footer :global(.dv-lockup__subtitle) {
+		color: var(--dv-color-sage-ink);
+	}
+
 	.dv-footer__nav ul {
 		list-style: none;
 		padding: 0;
@@ -223,6 +231,6 @@
 		font-size: 0.72rem;
 		letter-spacing: var(--dv-tracking-eyebrow);
 		text-transform: uppercase;
-		color: var(--dv-color-charcoal-mute);
+		color: var(--dv-color-charcoal-soft);
 	}
 </style>
