@@ -100,14 +100,14 @@ DOLCE VITA — HEADER & FOOTER RULES
 When porting the spec into the SvelteKit nav / footer / hero, treat it as
 ratios anchored to the "Dolce Vita" baseline:
 
-| Token            | Reference (1024×1536) | Ratio to title baseline | Code intent                                                |
-| ---------------- | --------------------- | ----------------------- | ---------------------------------------------------------- |
-| Dolce Vita size  | 52 px                 | 1.0×                    | Hero: full size · Nav: ~24–28 px · Footer: ~32–40 px       |
-| Baby Circle size | 26 px                 | 0.5×                    | Always exactly half the rendered title size                |
-| Title→subtitle   | 8 px                  | 0.154×                  | Use `clamp()` keyed off `--dv-lockup-size`                 |
-| Subtitle→divider | 12 px                 | 0.231×                  | Same                                                       |
-| Divider→content  | 32 px                 | 0.615×                  | Wrapper margin, not the mark itself                        |
-| Top margin       | 40 px                 | 0.769×                  | Hero shell only — irrelevant in nav (nav has its own pad)  |
+| Token            | Reference (1024×1536) | Ratio to title baseline | Code intent                                               |
+| ---------------- | --------------------- | ----------------------- | --------------------------------------------------------- |
+| Dolce Vita size  | 52 px                 | 1.0×                    | Hero: full size · Nav: ~24–28 px · Footer: ~32–40 px      |
+| Baby Circle size | 26 px                 | 0.5×                    | Always exactly half the rendered title size               |
+| Title→subtitle   | 8 px                  | 0.154×                  | Use `clamp()` keyed off `--dv-lockup-size`                |
+| Subtitle→divider | 12 px                 | 0.231×                  | Same                                                      |
+| Divider→content  | 32 px                 | 0.615×                  | Wrapper margin, not the mark itself                       |
+| Top margin       | 40 px                 | 0.769×                  | Hero shell only — irrelevant in nav (nav has its own pad) |
 
 The "1.0× / 0.5× ratio" is the only inviolable rule. Spacing units scale with
 the title. Build a CSS custom property (`--dv-lockup-size`) and derive
@@ -120,12 +120,12 @@ everything from it so a single value drives nav/footer/hero variants.
 The spec uses informal color names; the existing M3 design system already has
 the right tokens. Map them as follows in the lockup component:
 
-| Spec color           | Token (`src/lib/styles/tokens.css`) | Notes                                    |
-| -------------------- | ----------------------------------- | ---------------------------------------- |
-| terracotta (title)   | `--dv-color-terracotta`             | Already used for accents                 |
-| muted green (script) | `--dv-color-sage` (verify shade)    | Confirm matches "muted green" in poster  |
-| divider line         | `--dv-color-gold` (low-opacity)     | Existing `GoldRule` decorative           |
-| heart                | `--dv-color-terracotta`             | Same as title for color anchoring        |
+| Spec color           | Token (`src/lib/styles/tokens.css`) | Notes                                   |
+| -------------------- | ----------------------------------- | --------------------------------------- |
+| terracotta (title)   | `--dv-color-terracotta`             | Already used for accents                |
+| muted green (script) | `--dv-color-sage` (verify shade)    | Confirm matches "muted green" in poster |
+| divider line         | `--dv-color-gold` (low-opacity)     | Existing `GoldRule` decorative          |
+| heart                | `--dv-color-terracotta`             | Same as title for color anchoring       |
 
 Visual QA pass on the poster against the live tokens may require tuning the
 sage shade or introducing a `--dv-color-sage-soft` token — capture in the
@@ -135,10 +135,10 @@ implementation PR, not here.
 
 ## Typography
 
-| Element     | Family (current)      | Notes                                                       |
-| ----------- | --------------------- | ----------------------------------------------------------- |
-| Dolce Vita  | Cormorant Garamond    | Already loaded via `app.css`. Weight 500 reads closest to poster. |
-| Baby Circle | Tangerine             | Already loaded. Weight 700 (the bolder cut) for legibility at small sizes. |
+| Element     | Family (current)       | Notes                                                                                                     |
+| ----------- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| Dolce Vita  | Cormorant Garamond     | Already loaded via `app.css`. Weight 500 reads closest to poster.                                         |
+| Baby Circle | Tangerine              | Already loaded. Weight 700 (the bolder cut) for legibility at small sizes.                                |
 | Heart glyph | inline SVG (preferred) | Avoid emoji `♥` — ships inconsistent across OS. Build a small SVG matching the poster's terracotta heart. |
 
 ---
@@ -147,12 +147,12 @@ implementation PR, not here.
 
 Tracked so the implementation PR can find every site:
 
-| File                                                  | Today                                              | Pre-launch action                                   |
-| ----------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- |
-| `src/lib/components/navigation/SiteNav.svelte`        | Plain text `siteTitle` prop                        | Replace with `<BrandLockup variant="nav" />`        |
-| `src/lib/components/navigation/SiteFooter.svelte`     | Plain text `siteTitle` prop                        | Replace with `<BrandLockup variant="footer" />`    |
-| `src/routes/(app)/+page.svelte` (hero fallback)       | Stacked `dv-script "Dolce Vita"` + `dv-h1` headline | Replace with `<BrandLockup variant="hero" />`       |
-| `src/lib/components/blocks/HeroBlock.svelte`          | CMS-driven hero                                    | Decide: render `BrandLockup` ABOVE the headline, or only when CMS provides `script_accent` (currently not in schema). |
+| File                                              | Today                                               | Pre-launch action                                                                                                     |
+| ------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `src/lib/components/navigation/SiteNav.svelte`    | Plain text `siteTitle` prop                         | Replace with `<BrandLockup variant="nav" />`                                                                          |
+| `src/lib/components/navigation/SiteFooter.svelte` | Plain text `siteTitle` prop                         | Replace with `<BrandLockup variant="footer" />`                                                                       |
+| `src/routes/(app)/+page.svelte` (hero fallback)   | Stacked `dv-script "Dolce Vita"` + `dv-h1` headline | Replace with `<BrandLockup variant="hero" />`                                                                         |
+| `src/lib/components/blocks/HeroBlock.svelte`      | CMS-driven hero                                     | Decide: render `BrandLockup` ABOVE the headline, or only when CMS provides `script_accent` (currently not in schema). |
 
 A new component `src/lib/components/brand/BrandLockup.svelte` (with three
 variants — `nav`, `footer`, `hero`) is the proposed implementation surface.

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BrandLockup from '$components/brand/BrandLockup.svelte';
 	import GoldRule from '$components/decor/GoldRule.svelte';
 	import OliveBranch from '$components/decor/OliveBranch.svelte';
 
@@ -24,6 +25,15 @@
 
 		<div class="dv-hero__olive" aria-hidden="true">
 			<OliveBranch tone="sage" />
+		</div>
+
+		<!--
+			Canonical brand lockup sits above the page H1. The lockup is the
+			brand identity; the H1 below remains the descriptive headline.
+			See `.docs/architecture/brand-logo-spec.md`.
+		-->
+		<div class="dv-hero__lockup">
+			<BrandLockup variant="hero" />
 		</div>
 
 		{#if data.headline}
@@ -63,8 +73,12 @@
 		@apply mx-auto mt-8 w-48 sm:w-56;
 	}
 
+	.dv-hero__lockup {
+		@apply mt-8 flex justify-center;
+	}
+
 	.dv-hero__headline {
-		@apply text-balance;
+		@apply mt-10 text-balance;
 	}
 
 	.dv-hero__rule {

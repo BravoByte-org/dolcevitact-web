@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import BrandLockup from '$components/brand/BrandLockup.svelte';
 	import HamburgerButton from './HamburgerButton.svelte';
 	import type { NavItem, NavChild } from './types';
 
@@ -100,8 +101,8 @@
 
 <header class="dv-nav" class:dv-nav--scrolled={scrolled}>
 	<div class="dv-nav__bar">
-		<a href="/" class="dv-nav__brand" onclick={closeMobile}>
-			<span class="dv-nav__brand-script">{siteTitle}</span>
+		<a href="/" class="dv-nav__brand" onclick={closeMobile} aria-label={siteTitle}>
+			<BrandLockup variant="nav" />
 		</a>
 
 		<nav class="dv-nav__desktop" aria-label="Primary">
@@ -141,7 +142,9 @@
 	bind:this={panelRef}
 >
 	<div class="dv-nav__panel-inner">
-		<p class="dv-nav__panel-brand dv-script">{siteTitle}</p>
+		<div class="dv-nav__panel-brand">
+			<BrandLockup variant="footer" />
+		</div>
 
 		<ul class="dv-nav__panel-list">
 			{#each inlineItems as item (item.id)}
@@ -200,15 +203,16 @@
 	}
 
 	.dv-nav__brand {
+		display: inline-flex;
+		align-items: center;
 		color: var(--dv-color-charcoal);
 		text-decoration: none;
+		border-radius: 4px;
 	}
 
-	.dv-nav__brand-script {
-		font-family: var(--dv-font-script);
-		font-size: clamp(1.75rem, 1.2rem + 1vw, 2.25rem);
-		line-height: 1;
-		color: var(--dv-color-terracotta-deep);
+	.dv-nav__brand:focus-visible {
+		outline: 2px solid var(--dv-color-terracotta-deep);
+		outline-offset: 6px;
 	}
 
 	.dv-nav__desktop {
@@ -331,8 +335,8 @@
 	}
 
 	.dv-nav__panel-brand {
-		font-size: clamp(3rem, 2rem + 3vw, 4rem);
-		color: var(--dv-color-terracotta-deep);
+		display: flex;
+		justify-content: center;
 		margin-bottom: 2.5rem;
 	}
 
