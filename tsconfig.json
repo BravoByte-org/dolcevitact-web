@@ -12,7 +12,8 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"noEmit": true,
-		"checkJs": true
+		"checkJs": true,
+		"skipLibCheck": true
 	},
 	"include": [
 		"vite.config.ts",
