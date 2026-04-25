@@ -1,11 +1,28 @@
 <script lang="ts">
 	import '../../app.css';
+	import { dev } from '$app/environment';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import Grain from '$components/decor/Grain.svelte';
 	import SiteNav from '$components/navigation/SiteNav.svelte';
 	import SiteFooter from '$components/navigation/SiteFooter.svelte';
 	import type { NavItem } from '$components/navigation/types';
 	import type { LayoutData } from './$types';
 	import type { Snippet } from 'svelte';
+
+	/*
+	 * Vercel Web Analytics + Speed Insights are wired here at the (app)
+	 * layout level so every marketing route is tracked from a single
+	 * place. Both helpers are SSR-safe — they no-op on the server and
+	 * inject their scripts on the client. No env vars or tokens are
+	 * required: Vercel auto-detects the deployment ID at runtime.
+	 *
+	 * `mode: dev ? 'development' : 'production'` keeps local `pnpm dev`
+	 * out of the prod analytics bucket while still letting us verify the
+	 * `/_vercel/insights/*` requests fire end-to-end on preview deploys.
+	 */
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
+	injectSpeedInsights();
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 
