@@ -1,0 +1,19 @@
+{
+  "name": "Dolce Vita Baby Circle",
+  "short_name": "Dolce Vita",
+  "description": "An Italian-inspired morning of music, language, and movement for mama and bambino in Stamford, Connecticut.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "theme_color": "#f6f1ec",
+  "background_color": "#f6f1ec",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}

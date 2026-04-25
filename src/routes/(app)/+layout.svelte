@@ -34,21 +34,25 @@
 </script>
 
 <svelte:head>
-	<title>{siteTitle} — Italian-inspired mama & bambino circle in Stamford, CT</title>
-	<meta
-		name="description"
-		content={site?.description ??
-			'Dolce Vita Baby Circle — an Italian-inspired morning of music, language, and movement for mama and bambino in Stamford, Connecticut. The first chapter of Dolce Vita.'}
-	/>
-	<link rel="canonical" href="https://dolcevitact.com/" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={siteTitle} />
-	<meta
-		property="og:description"
-		content="A warm, refined Italian-inspired class for moms and babies in Stamford, CT."
-	/>
-	<meta property="og:url" content="https://dolcevitact.com/" />
+	<!--
+		Site-wide head: only tags that DON'T vary per-page live here. Per-page
+		title / description / canonical / og:url / og:image / twitter / JSON-LD
+		are owned by each `+page.svelte` so the route can override cleanly
+		without duplicate `<title>` tags.
+	-->
+
+	<meta name="theme-color" content="#f6f1ec" />
+	<meta name="apple-mobile-web-app-title" content="Dolce Vita" />
+	<meta name="application-name" content="Dolce Vita Baby Circle" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<meta property="og:site_name" content="Dolce Vita Baby Circle" />
 	<meta property="og:locale" content="en_US" />
+	<meta name="twitter:card" content="summary_large_image" />
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="manifest" href="/site.webmanifest" />
+
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link

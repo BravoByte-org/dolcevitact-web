@@ -4,7 +4,7 @@
 > **Domain:** https://dolcevitact.com (the `ct` suffix is a domain-availability quirk — the brand is "Dolce Vita")
 > **First chapter:** Dolce Vita Baby Circle
 > **Brand architecture:** branded house, paths-first (see [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md))
-> **Status:** M0–M5 complete. Brand rename + ADR 0002 merged (PR #30). Canonical brand lockup component shipped (PR #33, closes #32). **M6 Launch in progress** — split into M6a (analytics) → M6b (SEO) → M6c (a11y/perf) → M6d (security headers) → M6e (release cut).
+> **Status:** M0–M5 complete. Brand rename + ADR 0002 merged (PR #30). Canonical brand lockup component shipped (PR #33, closes #32). **M6 Launch in progress** — M6a analytics shipped (PR #34); M6b SEO foundations in flight; remaining: M6c (a11y/perf) → M6d (security headers) → M6e (release cut).
 > **Last Updated:** April 25, 2026
 
 This is the single source of truth for what `dolcevitact-web` is, why it exists,
@@ -94,7 +94,7 @@ via the canonical `BrandLockup` component (M6, PR #33).
 | M3  | Design system            | done        | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16)                                                                                                                                                                                                                                                             |
 | M4  | Sections                 | done        | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | M4a block shell (PR #20), M4b sticky nav + drawer (PR #23), M4c full styling + a11y smoke (PR #26). Styling guide: [`.docs/architecture/block-styling-guide.md`](./.docs/architecture/block-styling-guide.md)                                                                                    |
 | M5  | RSVP                     | done        | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | `?/rsvp` form action → Zod validate → Directus `rsvp_submissions` write → Resend notification + honeypot + success/error UI (PR #28). Brand rename promoted via PR #30 (recovery from stranded stack). Plan: [`.docs/architecture/m5-rsvp-plan.md`](./.docs/architecture/m5-rsvp-plan.md)        |
-| M6  | Launch                   | in progress | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | Brand lockup component done (PR #33). Remaining: M6a Vercel Analytics + Speed Insights (#21) → M6b SEO/OG/JSON-LD/sitemap (#12 part 1) → M6c a11y + perf + Lighthouse ≥95 (#12 part 2) → M6d `vercel.json` security headers (#13 part 1) → M6e release cut + DNS verify + RSVP smoke (#13 + #24) |
+| M6  | Launch                   | in progress | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | Brand lockup (PR #33) + M6a analytics (PR #34) done. M6b SEO foundations in flight: per-page meta, OG/Twitter cards, `LocalBusiness` JSON-LD, `/sitemap.xml`, favicon SVG + manifest (#12 part 1). Remaining: M6c a11y + perf + Lighthouse ≥95 (#12 part 2) → M6d `vercel.json` security headers (#13 part 1) → M6e release cut + DNS verify + RSVP smoke (#13 + #24) |
 
 GitHub Project board: [BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4)
 
