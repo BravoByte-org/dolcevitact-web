@@ -192,8 +192,8 @@
 		align-items: center;
 		margin-top: 3rem;
 		padding: 0.9rem 2rem;
-		background: var(--dv-color-terracotta);
-		color: var(--dv-color-ivory);
+		background: var(--dv-color-terracotta-deep);
+		color: #fff;
 		font-family: var(--dv-font-sans);
 		font-size: 0.8rem;
 		letter-spacing: 0.14em;

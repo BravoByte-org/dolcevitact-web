@@ -120,3 +120,13 @@ body {
 	color: var(--dv-color-charcoal-soft);
 	line-height: var(--dv-leading-body);
 }
+
+/*
+ * Consistent :focus-visible across interactive elements for keyboard
+ * and switch users. Respects the editorial palette; components with
+ * stronger affordances (e.g. the nav) may add their own overrides.
+ */
+:where(a, button, input:not([type='hidden']), textarea, select, summary):focus-visible {
+	outline: 2px solid var(--dv-color-terracotta);
+	outline-offset: 2px;
+}

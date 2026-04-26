@@ -260,7 +260,7 @@
 	}
 
 	.dv-rsvp__submit {
-		@apply bg-terracotta text-ivory rounded-full border-none px-8 py-[0.9rem] font-sans text-[0.8rem] tracking-[0.14em] uppercase;
+		@apply bg-terracotta-deep rounded-full border-none px-8 py-[0.9rem] font-sans text-[0.8rem] tracking-[0.14em] text-white uppercase;
 		grid-column: 1 / -1;
 		justify-self: center;
 		cursor: pointer;
@@ -270,7 +270,7 @@
 			opacity 200ms ease;
 
 		&:hover:not(:disabled) {
-			background: var(--dv-color-terracotta-deep);
+			background: color-mix(in srgb, var(--dv-color-terracotta-deep) 85%, #000);
 			transform: translateY(-1px);
 		}
 

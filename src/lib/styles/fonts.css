@@ -1,14 +1,12 @@
 /*
  * Webfont registration
  * --------------------------------------------------------------
- * Fonts are loaded via <link rel="stylesheet"> in src/routes/+layout.svelte
- * (with paired <link rel="preconnect"> hints) so that:
- *   1. The CSS @import-must-come-first rule isn't violated when this file
- *      is bundled with tokens / motion / Tailwind into a single stylesheet.
- *   2. The browser starts the font fetch as soon as the HTML is parsed,
- *      not after the main stylesheet downloads + parses.
+ * Face definitions come from the Google Fonts CSS loaded *non-blockingly*
+ * in `src/routes/(app)/+layout.svelte` (preload as=style, onload →
+ * rel=stylesheet, `<noscript>` fallback) with paired
+ * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>.
  *
- * M6 (#12) swaps Google Fonts for self-hosted, subset woff2 with
- * rel="preload" for the display + script faces (the only two used
- * above the fold in the hero).
+ * A future M7+ could swap to self-hosted subset woff2 with explicit
+ * `rel="preload" as="font" type="font/woff2"` for the two above-the-fold
+ * faces (Cormorant Garamond + Tangerine) once file URLs are stable.
  */

@@ -102,22 +102,19 @@ Only convert to `@apply` when refactor actually reduces duplication.
 
 ## A11y smoke test
 
-The mobile nav drawer has a dedicated Playwright + axe-core smoke test at
-`tests/e2e/nav-drawer.a11y.spec.ts`. Run it locally with:
+`pnpm test:a11y` (Playwright + `@axe-core/playwright`, ports in
+`playwright.config.ts`) boots `pnpm build && pnpm preview` unless
+`PW_NO_WEBSERVER=1` with a server already on port 4002 (CI path).
 
-```bash
-pnpm test:a11y
-```
+- **`tests/e2e/nav-drawer.a11y.spec.ts`** — drawer open/close, scroll lock, Esc/Tab.
+  Wait for `opacity: 1` on `#dv-nav-mobile-panel` before axe so
+  color-contrast is not evaluated mid-fade.
+- **`tests/e2e/homepage.a11y.spec.ts`** (M6c) — full-page WCAG 2.1 AA on
+  desktop + mobile, skip link → `#main` (`main` has `tabindex="-1"`), and
+  keyboard path to the header Reserve CTA.
 
-It boots `pnpm build && pnpm preview` on port 4002 and verifies:
-
-- No WCAG 2.1 AA violations while the drawer is open
-- Body scroll lock (`.dv-scroll-locked`) is applied on open
-- Esc closes the drawer and returns focus to the hamburger trigger
-- Focus is pulled into the panel on open
-
-Add more `@a11y`-tagged specs next to this one for other interactive
-blocks (FAQ accordion, RSVP form) as they gain complexity.
+Lighthouse CI: `lighthouserc.cjs` + `pnpm perf:lhci` (runs a production
+`pnpm preview` and asserts category scores; see the file for thresholds).
 
 ## Reusability candidates
 
