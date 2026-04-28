@@ -50,12 +50,12 @@ configuration. Repo-local rules live in `.cursor/rules/` (when added).
 
 ## 3. Repo placement (Rule Zero)
 
-| Concern                                                     | Repo                                                                      | Why                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------- |
-| Brand copy, palette, typography, imagery, page composition  | this repo                                                                 | client-local               |
+| Concern                                                     | Repo                                                                           | Why                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------- |
+| Brand copy, palette, typography, imagery, page composition  | this repo                                                                      | client-local               |
 | Smooth-scroll SPA layout, sticky nav, grain texture         | this repo first → `@bravobyte-org/frontend-core` once a second client needs it | shared-candidate           |
-| FAQ / event-details / RSVP-form / RSVP-submission contracts | `@bravobyte-org/types`                                                    | shared-core, extracted now |
-| Directus integration helpers, site-scoped queries           | this repo first → `bravobyte-data-core` later                             | shared-candidate           |
+| FAQ / event-details / RSVP-form / RSVP-submission contracts | `@bravobyte-org/types`                                                         | shared-core, extracted now |
+| Directus integration helpers, site-scoped queries           | this repo first → `bravobyte-data-core` later                                  | shared-candidate           |
 
 ---
 
