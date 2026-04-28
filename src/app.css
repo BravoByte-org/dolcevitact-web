@@ -3,11 +3,55 @@
 @import './lib/styles/fonts.css';
 @import './lib/styles/motion.css';
 
+/*
+ * Make `@bravobyte-org/frontend-core` source files visible to Tailwind v4 so
+ * utility classes used inside shared primitives compile into the bundle.
+ */
+@source "../node_modules/@bravobyte-org/frontend-core/src";
+
 /* em-based custom-media for browser zoom + user font-size accessibility. */
 @custom-media --sm (min-width: 40em);
 @custom-media --md (min-width: 48em);
 @custom-media --lg (min-width: 64em);
 @custom-media --xl (min-width: 80em);
+
+/*
+ * BravoByte token contract
+ * ---------------------------------------------------------------
+ * `--bb-*` custom properties are the public API consumed by primitives
+ * shipped from `@bravobyte-org/frontend-core`. Map Dolce's brand tokens
+ * (--dv-*) onto them so shared primitives render in the brand's voice
+ * without importing brand-specific values.
+ *
+ * Canonical mapping table:
+ * `bravobyte/.docs/architecture/bravobyte-frontend-core-tokens.md`
+ */
+:root {
+	--bb-color-primary: var(--dv-color-terracotta-deep);
+	--bb-color-on-primary: #ffffff;
+	--bb-color-fg: var(--dv-color-charcoal);
+	--bb-color-fg-soft: var(--dv-color-charcoal-soft);
+	--bb-color-fg-muted: var(--dv-color-charcoal-mute);
+	--bb-color-surface: color-mix(in srgb, var(--dv-color-ivory) 60%, white 40%);
+	--bb-color-border: color-mix(in srgb, var(--dv-color-sage) 20%, transparent);
+	--bb-color-focus: var(--dv-color-terracotta);
+
+	--bb-radius-md: var(--dv-radius-md);
+	--bb-radius-lg: var(--dv-radius-lg);
+
+	--bb-text-eyebrow: var(--dv-text-eyebrow);
+	--bb-text-h2: var(--dv-text-h2);
+	--bb-text-lede: var(--dv-text-lede);
+	--bb-tracking-eyebrow: var(--dv-tracking-eyebrow);
+
+	--bb-section-padding-x: 1.5rem;
+	--bb-section-padding-y: clamp(3rem, 8vw, 5rem);
+
+	--bb-shadow-soft: var(--dv-shadow-soft);
+	--bb-shadow-card: var(--dv-shadow-card);
+
+	--bb-ease-soft: var(--dv-ease-soft);
+}
 
 /* Map design tokens into Tailwind v4 theme so utilities like bg-ivory,
    text-terracotta, font-display, shadow-soft work. */
