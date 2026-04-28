@@ -26,10 +26,15 @@ Resend · Vercel.
 
 **Shared dependencies:**
 
-- `@bravobyte/types` — shared content contracts. Will be added in M1 once the
-  Dolce Vita contracts are extracted and a Phase-1 distribution path is in
-  place (npm workspace at the BravoByte root or a private registry).
-- Future: `@bravobyte/frontend-core`, `@bravobyte/data-core`
+- `@bravobyte-org/types` — shared content contracts (published `1.0.0` to
+  GitHub Packages). Wired in once Dolce Vita's contracts are extracted to
+  the package.
+- `@bravobyte-org/frontend-core` — token-driven Svelte primitives and the
+  first wave of Directus block layouts. The app's `app.css` already maps
+  `--dv-*` brand tokens onto the `--bb-*` contract; the dependency entry
+  and import swaps land alongside the first block migration. See
+  [`bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md).
+- Future: `@bravobyte-org/data-core`
 
 ---
 
@@ -45,12 +50,12 @@ configuration. Repo-local rules live in `.cursor/rules/` (when added).
 
 ## 3. Repo placement (Rule Zero)
 
-| Concern                                                     | Repo                                                                      | Why                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------- |
-| Brand copy, palette, typography, imagery, page composition  | this repo                                                                 | client-local               |
-| Smooth-scroll SPA layout, sticky nav, grain texture         | this repo first → `bravobyte-frontend-core` once a second client needs it | shared-candidate           |
-| FAQ / event-details / RSVP-form / RSVP-submission contracts | `bravobyte-types`                                                         | shared-core, extracted now |
-| Directus integration helpers, site-scoped queries           | this repo first → `bravobyte-data-core` later                             | shared-candidate           |
+| Concern                                                     | Repo                                                                           | Why                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------- |
+| Brand copy, palette, typography, imagery, page composition  | this repo                                                                      | client-local               |
+| Smooth-scroll SPA layout, sticky nav, grain texture         | this repo first → `@bravobyte-org/frontend-core` once a second client needs it | shared-candidate           |
+| FAQ / event-details / RSVP-form / RSVP-submission contracts | `@bravobyte-org/types`                                                         | shared-core, extracted now |
+| Directus integration helpers, site-scoped queries           | this repo first → `bravobyte-data-core` later                                  | shared-candidate           |
 
 ---
 
@@ -79,7 +84,7 @@ The homepage is a single Directus `pages` row composed of M2A blocks:
 | --- | ------------------------ | ----------- | ------------------------------------------------------------------ | ---------------------------------------------- |
 | M-1 | GitHub workspace         | done        | —                                                                  | Repo, labels, templates, board, epics, stories |
 | M0  | Foundation               | in progress | [#1](https://github.com/BravoByte-org/dolcevitact-web/milestone/1) | Scaffold + Directus site row + Vercel + DNS    |
-| M1  | Shared content contracts | in review   | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension (types PR #2)     |
+| M1  | Shared content contracts | in review   | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte-org/types` extension (types PR #2) |
 | M2  | Directus schema          | in review   | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration script + app plumbing     |
 | M3  | Design system            | done        | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16 merged)    |
 | M4  | Sections                 | planned     | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | 9 sections + nav + footer                      |
