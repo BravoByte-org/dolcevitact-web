@@ -127,3 +127,20 @@ Full design notes: `.docs/architecture/design-system.md` (added in M3).
 | Project board       | https://github.com/orgs/BravoByte-org/projects/4 |
 | Directus site key   | `dolcevita`                                      |
 | Email notifications | `RSVP_NOTIFY_EMAIL` (Resend)                     |
+
+---
+
+## 9. Release process
+
+This repo follows the BravoByte org-wide Changesets release loop. Every PR
+that ships a user-visible change runs `pnpm changeset` before merging;
+[`.github/workflows/release.yml`](.github/workflows/release.yml) delegates
+to the reusable workflow in the `bravobyte` monorepo and opens a
+`release/v<version>` PR titled `release: dolcevitact.com@<version>`. Merging
+that PR tags the version, creates a GitHub Release, and promotes the build
+to Vercel production.
+
+Full playbook:
+[`bravobyte/.ai/playbooks/release-flow.md`](../bravobyte/.ai/playbooks/release-flow.md).
+Rationale:
+[ADR-006](../bravobyte/.docs/adrs/adr-006-org-release-standardization.md).
