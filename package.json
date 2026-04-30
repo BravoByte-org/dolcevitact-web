@@ -51,6 +51,7 @@
 		"wait-on": "^8.0.1"
 	},
 	"dependencies": {
+		"@bravobyte-org/frontend-core": "^1.2.0",
 		"@directus/sdk": "^20.2.0",
 		"@vercel/analytics": "^2.0.1",
 		"@vercel/speed-insights": "^2.0.0",
