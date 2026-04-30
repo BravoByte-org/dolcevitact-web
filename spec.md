@@ -34,10 +34,15 @@ Resend · Vercel.
 
 **Shared dependencies:**
 
-- `@bravobyte/types` — shared content contracts. Will be added in M1 once the
-  Dolce Vita contracts are extracted and a Phase-1 distribution path is in
-  place (npm workspace at the BravoByte root or a private registry).
-- Future: `@bravobyte/frontend-core`, `@bravobyte/data-core`
+- `@bravobyte-org/types` — shared content contracts (published `1.0.0` to
+  GitHub Packages). Wired in once Dolce Vita's contracts are extracted to
+  the package.
+- `@bravobyte-org/frontend-core` — token-driven Svelte primitives and the
+  first wave of Directus block layouts. The app's `app.css` already maps
+  `--dv-*` brand tokens onto the `--bb-*` contract; the dependency entry
+  and import swaps land alongside the first block migration. See
+  [`bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md).
+- Future: `@bravobyte-org/data-core`
 
 ---
 
@@ -53,12 +58,12 @@ configuration. Repo-local rules live in `.cursor/rules/` (when added).
 
 ## 3. Repo placement (Rule Zero)
 
-| Concern                                                     | Repo                                                                      | Why                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------- |
-| Brand copy, palette, typography, imagery, page composition  | this repo                                                                 | client-local               |
-| Smooth-scroll SPA layout, sticky nav, grain texture         | this repo first → `bravobyte-frontend-core` once a second client needs it | shared-candidate           |
-| FAQ / event-details / RSVP-form / RSVP-submission contracts | `bravobyte-types`                                                         | shared-core, extracted now |
-| Directus integration helpers, site-scoped queries           | this repo first → `bravobyte-data-core` later                             | shared-candidate           |
+| Concern                                                     | Repo                                                                           | Why                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------- |
+| Brand copy, palette, typography, imagery, page composition  | this repo                                                                      | client-local               |
+| Smooth-scroll SPA layout, sticky nav, grain texture         | this repo first → `@bravobyte-org/frontend-core` once a second client needs it | shared-candidate           |
+| FAQ / event-details / RSVP-form / RSVP-submission contracts | `@bravobyte-org/types`                                                         | shared-core, extracted now |
+| Directus integration helpers, site-scoped queries           | this repo first → `bravobyte-data-core` later                                  | shared-candidate           |
 
 ---
 
@@ -143,3 +148,20 @@ Full design notes: `.docs/architecture/design-system.md` (added in M3).
 | Project board       | https://github.com/orgs/BravoByte-org/projects/4 |
 | Directus site key   | `dolcevita`                                      |
 | Email notifications | `RSVP_NOTIFY_EMAIL` (Resend)                     |
+
+---
+
+## 9. Release process
+
+This repo follows the BravoByte org-wide Changesets release loop. Every PR
+that ships a user-visible change runs `pnpm changeset` before merging;
+[`.github/workflows/release.yml`](.github/workflows/release.yml) delegates
+to the reusable workflow in the `bravobyte` monorepo and opens a
+`release/v<version>` PR titled `release: dolcevitact.com@<version>`. Merging
+that PR tags the version, creates a GitHub Release, and promotes the build
+to Vercel production.
+
+Full playbook:
+[`bravobyte/.ai/playbooks/release-flow.md`](../bravobyte/.ai/playbooks/release-flow.md).
+Rationale:
+[ADR-006](../bravobyte/.docs/adrs/adr-006-org-release-standardization.md).
