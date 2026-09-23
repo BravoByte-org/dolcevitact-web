@@ -1,7 +1,7 @@
 # .ai — Dolce Vita CT
 
 Repo-local AI configuration. Inherits from the workspace-level
-[`bravobyte-ai`](../../bravobyte-ai) repo, which holds the canonical
+[`bravobyte-ai`](../../../core/bravobyte-ai) repo, which holds the canonical
 personas, rules, playbooks, and templates.
 
 | Path         | Purpose                                                              |
