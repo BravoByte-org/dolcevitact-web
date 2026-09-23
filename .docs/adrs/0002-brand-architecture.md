@@ -169,7 +169,7 @@ These are cheap insurance, not architectural commitments:
   updates the existing CMS rows to match the conventions in this ADR.
   Created so we don't have to re-run the full `migrate.mjs --seed` (which
   would only operate on a fresh database anyway).
-- `.cursor/rules/dolcevita-project.mdc` — the brand/offering/domain
+- `.ai/rules/dolcevita-project.md` — the brand/offering/domain
   decision tree and naming conventions are now part of the always-applied
   project rules.
 

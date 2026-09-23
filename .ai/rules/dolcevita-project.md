@@ -1,8 +1,4 @@
----
-description: Dolce Vita delivery repo — context, scope, and house style
-globs:
-alwaysApply: true
----
+<!-- Migrated from .cursor/rules/dolcevita-project.mdc (Cursor rule, retired 2026-09-23). Applies to the whole repo. Original description: Dolce Vita delivery repo — context, scope, and house style -->
 
 # Dolce Vita — repo context
 
@@ -19,7 +15,7 @@ ships the marketing single-page application for [dolcevitact.com](https://dolcev
 ## Brand architecture: branded house, paths-first
 
 - The Dolce Vita parent brand owns the experience; new offerings live at sibling paths (`dolcevitact.com/cucina`, `/classes`, etc.) on the same domain rather than separate subdomains or domains.
-- See [`.docs/adrs/0002-brand-architecture.md`](mdc:.docs/adrs/0002-brand-architecture.md) for rationale and growth phases.
+- See [`.docs/adrs/0002-brand-architecture.md`](../../.docs/adrs/0002-brand-architecture.md) for rationale and growth phases.
 - Decision tree before adding a new offering:
   1. Is it the same audience and same brand promise? → new path on `dolcevitact.com`.
   2. Different audience, same parent brand? → still new path, but with its own landing.
@@ -62,11 +58,11 @@ ships the marketing single-page application for [dolcevitact.com](https://dolcev
 
 - Directus is the single source of content. Site key: `dolcevita`. Site-scoped queries only — never leak Starway content into Dolce Vita and vice-versa.
 - RSVP submissions go to the Directus `rsvp_submissions` collection (created public, never publicly readable) and trigger a Resend notification to `RSVP_NOTIFY_EMAIL`.
-- Always apply the canonical [directus-collection-permissions](mdc:.cursor/rules/directus-collection-permissions.mdc) rule when creating new collections — ship the permission seed in the same change.
+- Always apply the canonical directus-collection-permissions rule (`rules/directus-collection-permissions.md` in the `bravobyte-ai` repo) when creating new collections — ship the permission seed in the same change.
 
 ## Workflow
 
 - Issues tracked on the [BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4).
-- Milestones M-1 → M6 documented in [`spec.md`](mdc:spec.md).
+- Milestones M-1 → M6 documented in [`spec.md`](../../spec.md).
 - Squash-merge PRs with conventional titles per the BravoByte git-history policy.
 - Update `spec.md` after every meaningful piece of work; keep it under 500 lines.
