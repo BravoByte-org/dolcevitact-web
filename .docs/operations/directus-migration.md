@@ -154,5 +154,5 @@ dependent `directus_permissions` rows, which is what you want.
 
 - Shared rule: [`bravobyte-ai/rules/directus-collection-permissions.md`](../../../bravobyte-ai/rules/directus-collection-permissions.md)
 - Shared rule: [`bravobyte-ai/rules/directus-collection-display.md`](../../../bravobyte-ai/rules/directus-collection-display.md)
-- Cursor rule: [`.cursor/rules/directus-collection-permissions.mdc`](../../.cursor/rules/directus-collection-permissions.mdc) (not yet added to this repo; inherits the workspace rule)
+- Rule: `rules/directus-collection-permissions.md` in the `bravobyte-ai` repo (not vendored into this repo; inherits the workspace rule)
 - ADR: [`.docs/adrs/0001-dolce-vita-architecture.md`](../adrs/0001-dolce-vita-architecture.md)

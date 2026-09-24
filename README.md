@@ -73,8 +73,7 @@ static/                # robots.txt, og-image, favicon
 .github/
   ISSUE_TEMPLATE/      # 11 templates copied from bravobyte-platform
   workflows/ci.yml     # CI (will refactor to call platform reusable workflow)
-.ai/                   # Repo-specific AI rules (inherits from workspace)
-.cursor/               # Cursor-native rules (.mdc)
+.ai/                   # Repo-specific rules, plain markdown (personas/skills come from bravobyte-ai)
 .docs/                 # Architecture, ADRs, operations
 spec.md                # Single source of truth (≤500 lines)
 ```

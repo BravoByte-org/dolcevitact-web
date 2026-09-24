@@ -52,7 +52,7 @@ This repo follows the [BravoByte workflow](../bravobyte-ai/spec.md):
 Strategize → Architect → Verify plan → Build → Verify code → Capture → Update.
 
 Personas, rules, and playbooks are inherited from the workspace-level
-configuration. Repo-local rules live in `.cursor/rules/` (when added).
+configuration. Repo-local rules live in `.ai/rules/`.
 
 ---
 
