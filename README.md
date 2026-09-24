@@ -71,7 +71,7 @@ src/
     reserve/           # RSVP form action (M5)
 static/                # robots.txt, og-image, favicon
 .github/
-  ISSUE_TEMPLATE/      # 11 templates copied from bravobyte-platform
+  ISSUE_TEMPLATE/      # 11 templates copied from bravobyte platform/
   workflows/ci.yml     # CI (will refactor to call platform reusable workflow)
 .ai/                   # Repo-specific rules, plain markdown (personas/skills come from bravobyte-ai)
 .docs/                 # Architecture, ADRs, operations
