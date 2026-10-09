@@ -1,8 +1,15 @@
-import { createDirectus, rest, staticToken, readItems, readSingleton } from '@directus/sdk';
+import {
+	createDirectus,
+	rest,
+	staticToken,
+	readItems,
+	readSingleton,
+	createItem
+} from '@directus/sdk';
 import { env } from '$env/dynamic/private';
 
 /**
- * Typed schema for the Dolce Vita CT view of the shared BravoByte Directus
+ * Typed schema for the Dolce Vita view of the shared BravoByte Directus
  * instance at https://cms.bravobyte.co. Only collections this delivery app
  * actually reads are declared — everything else goes through the SDK as
  * `Record<string, unknown>` which we never rely on.
@@ -39,15 +46,27 @@ type Schema = {
 const URL = env.DIRECTUS_URL || env.PRIVATE_DIRECTUS_URL;
 const TOKEN = env.DIRECTUS_TOKEN || env.PRIVATE_DIRECTUS_TOKEN;
 
-if (!URL) {
-	throw new Error(
-		'Please set DIRECTUS_URL (or PRIVATE_DIRECTUS_URL) in the environment before booting.'
-	);
+/**
+ * URL/token are resolved lazily on first call instead of at module load so
+ * `pnpm build` (which evaluates every server module during SvelteKit's
+ * `analyse` postbuild step) doesn't crash in CI where no Directus env vars
+ * are set. Vercel always has the runtime env wired up via `vercel env`,
+ * so a real request will always have a valid URL — and if it ever doesn't,
+ * throwing here gives a much clearer "your deployment is mis-configured"
+ * signal than a silent fetch failure.
+ */
+function resolveBaseUrl(): string {
+	if (!URL) {
+		throw new Error(
+			'Please set DIRECTUS_URL (or PRIVATE_DIRECTUS_URL) in the environment before calling Directus.'
+		);
+	}
+	return URL;
 }
 
 const createDirectusClient = (fetch?: typeof globalThis.fetch, token?: string) => {
 	const options = fetch ? { globals: { fetch } } : {};
-	const client = createDirectus<Schema>(URL, options).with(rest());
+	const client = createDirectus<Schema>(resolveBaseUrl(), options).with(rest());
 	return token ? client.with(staticToken(token)) : client;
 };
 
@@ -81,4 +100,4 @@ async function requestDirectus<T>(
 	}
 }
 
-export { getDirectusClient, requestDirectus, readItems, readSingleton };
+export { getDirectusClient, requestDirectus, readItems, readSingleton, createItem };

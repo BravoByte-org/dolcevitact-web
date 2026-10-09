@@ -1,8 +1,14 @@
 # dolcevitact-web
 
-Marketing site for **Dolce Vita CT** at [dolcevitact.com](https://dolcevitact.com),
-a premium Italian-inspired mom & baby experience in Stamford, Connecticut.
-Owned and operated by **BravoByteLLC**.
+Marketing site for the **Dolce Vita** brand at
+[dolcevitact.com](https://dolcevitact.com), launching with our first chapter:
+the **Dolce Vita Baby Circle** — an Italian-inspired mama & bambino circle in
+Stamford, Connecticut. Owned and operated by **BravoByteLLC**.
+
+> Brand architecture: branded house, paths-first. The current site _is_ the
+> Baby Circle; future offerings (e.g. cucina, online classes, newsletters) live
+> at sibling paths like `dolcevitact.com/cucina` rather than separate domains
+> or subdomains. See [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md).
 
 Part of the [BravoByte](../bravobyte-ai) ecosystem. This is a **delivery
 repo** — it composes shared modules and stays thin. See
@@ -65,10 +71,9 @@ src/
     reserve/           # RSVP form action (M5)
 static/                # robots.txt, og-image, favicon
 .github/
-  ISSUE_TEMPLATE/      # 11 templates copied from bravobyte-platform
+  ISSUE_TEMPLATE/      # 11 templates copied from bravobyte platform/
   workflows/ci.yml     # CI (will refactor to call platform reusable workflow)
-.ai/                   # Repo-specific AI rules (inherits from workspace)
-.cursor/               # Cursor-native rules (.mdc)
+.ai/                   # Repo-specific rules, plain markdown (personas/skills come from bravobyte-ai)
 .docs/                 # Architecture, ADRs, operations
 spec.md                # Single source of truth (≤500 lines)
 ```
@@ -82,7 +87,7 @@ Strategize → Architect → Verify plan → Build → Verify code → Capture �
 Update.
 
 Issues are tracked on the
-[BravoByte/Dolce Vita CT Board](https://github.com/orgs/BravoByte-org/projects/4).
+[BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4).
 Work follows the milestones M-1 → M6 documented in
 [`spec.md`](./spec.md#5-milestones).
 

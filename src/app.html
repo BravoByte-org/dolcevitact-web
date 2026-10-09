@@ -3,8 +3,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#F6F1EC" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+		<!--
+			SEO / favicon / theme-color / manifest / OG / Twitter / JSON-LD all
+			live in the (app) layout + page heads — not here. Keeping app.html
+			minimal means we don't ship duplicated meta tags or stale fallbacks
+			(e.g. a broken /favicon.ico) once a route head loads.
+		-->
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" class="bg-ivory text-charcoal antialiased">

@@ -1,0 +1,68 @@
+<!-- Migrated from .cursor/rules/dolcevita-project.mdc (Cursor rule, retired 2026-09-23). Applies to the whole repo. Original description: Dolce Vita delivery repo — context, scope, and house style -->
+
+# Dolce Vita — repo context
+
+You are working in `dolcevitact-web`, a **thin BravoByte delivery repo** that
+ships the marketing single-page application for [dolcevitact.com](https://dolcevitact.com).
+
+## Brand vs. offering vs. domain
+
+- **Brand:** Dolce Vita — a premium Italian-inspired lifestyle brand owned by BravoByteLLC.
+- **Current offering (first chapter):** Dolce Vita Baby Circle — an Italian-inspired mama & bambino class in Stamford, CT.
+- **Domain:** `dolcevitact.com` — the `ct` suffix is a domain-availability quirk (Connecticut state code), not part of the brand name. Never write "Dolce Vita CT" in customer-facing copy.
+- **Future chapters under consideration:** cucina (homecooked Italian food service), online classes, newsletter.
+
+## Brand architecture: branded house, paths-first
+
+- The Dolce Vita parent brand owns the experience; new offerings live at sibling paths (`dolcevitact.com/cucina`, `/classes`, etc.) on the same domain rather than separate subdomains or domains.
+- See [`.docs/adrs/0002-brand-architecture.md`](../../.docs/adrs/0002-brand-architecture.md) for rationale and growth phases.
+- Decision tree before adding a new offering:
+  1. Is it the same audience and same brand promise? → new path on `dolcevitact.com`.
+  2. Different audience, same parent brand? → still new path, but with its own landing.
+  3. Truly separate sub-brand or platform? → re-evaluate; subdomain only if SEO + ops justify it.
+
+## Naming conventions in copy
+
+- **Headlines / SEO titles / page titles:** "Dolce Vita Baby Circle" (full offering name).
+- **Framing / hero script accent / parent-brand callouts:** "Dolce Vita" alone.
+- **Emails to customers:** sign as Dolce Vita, mention the specific offering when relevant.
+- **Never:** "Dolce Vita CT" anywhere customer-visible.
+
+## Repo placement (Rule Zero recap)
+
+- **Brand copy / palette / typography / imagery / page composition** → stays here.
+- **Reusable layout patterns / block components / Directus query helpers** → start here, extract to `bravobyte-frontend-core` or `bravobyte-data-core` once a second client needs them.
+- **Content contracts (block / collection types)** → live in `bravobyte-types`, never duplicated locally.
+- Never publish brand-specific copy or assets to a shared repo.
+
+## Brand voice in code and copy
+
+- Elegant, concise, emotionally warm. Polished, feminine but not flowery, premium and trustworthy.
+- Avoid: childish, cartoonish, daycare-y, corporate, cheesy, exclamation-heavy.
+- The site should feel like a boutique Italian lifestyle brand, not a kids' activity center.
+
+## Visual conventions
+
+- Palette tokens live in `src/lib/styles/tokens.css` (`--dv-color-*`, `--dv-font-*`).
+- Tailwind v4 utilities map to those tokens via `@theme` in `src/app.css` — prefer `bg-ivory text-charcoal font-display` over arbitrary hex values.
+- Subtle radii (4–8px), very soft shadows only where useful, generous whitespace.
+- Respect `prefers-reduced-motion` everywhere.
+
+## Component conventions
+
+- Default to **semantic class names** in markup; use Tailwind `@apply` in component `<style lang="postcss">` blocks for repeated styling. Mirror Starway's pattern.
+- Section components live in `src/lib/components/sections/`, navigation in `navigation/`, decoratives (olive branch, gold rule, grain) in `decor/`.
+- The homepage is **one page** composed of section components driven by Directus blocks via `BlockRenderer.svelte`.
+
+## Data
+
+- Directus is the single source of content. Site key: `dolcevita`. Site-scoped queries only — never leak Starway content into Dolce Vita and vice-versa.
+- RSVP submissions go to the Directus `rsvp_submissions` collection (created public, never publicly readable) and trigger a Resend notification to `RSVP_NOTIFY_EMAIL`.
+- Always apply the canonical directus-collection-permissions rule (`rules/directus-collection-permissions.md` in the `bravobyte-ai` repo) when creating new collections — ship the permission seed in the same change.
+
+## Workflow
+
+- Issues tracked on the [BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4).
+- Milestones M-1 → M6 documented in [`spec.md`](../../spec.md).
+- Squash-merge PRs with conventional titles per the BravoByte git-history policy.
+- Update `spec.md` after every meaningful piece of work; keep it under 500 lines.

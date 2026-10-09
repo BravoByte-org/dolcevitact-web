@@ -13,4 +13,6 @@ vite.config.ts.timestamp-*
 /test-results/
 /playwright-report/
 /coverage/
+.env*.local
+.lighthouseci/
 /.lighthouseci/
