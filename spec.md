@@ -5,7 +5,7 @@
 > **First chapter:** Dolce Vita Baby Circle
 > **Brand architecture:** branded house, paths-first (see [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md))
 > **Status:** M0–M5 complete. Brand rename + ADR 0002 merged (PR #30). Canonical brand lockup (PR #33). **M6 Launch in progress** — M6a analytics (PR #34) + M6b SEO (PR #35) + M6c a11y/perf in flight; remaining: M6d (security headers) → M6e (release cut).
-> **Last Updated:** April 25, 2026
+> **Last Updated:** April 29, 2026 — block extraction Path B; seven generic blocks now consumed from `@bravobyte-org/frontend-core@^1.2.0` via `BlockRenderer`; Hero, FAQ, EventDetails, RsvpForm stay local.
 
 This is the single source of truth for what `dolcevitact-web` is, why it exists,
 and where we are. It must stay under 500 lines and reference detail files
@@ -37,11 +37,16 @@ Resend · Vercel.
 - `@bravobyte-org/types` — shared content contracts (published `1.0.0` to
   GitHub Packages). Wired in once Dolce Vita's contracts are extracted to
   the package.
-- `@bravobyte-org/frontend-core` — token-driven Svelte primitives and the
-  first wave of Directus block layouts. The app's `app.css` already maps
-  `--dv-*` brand tokens onto the `--bb-*` contract; the dependency entry
-  and import swaps land alongside the first block migration. See
-  [`bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md).
+- `@bravobyte-org/frontend-core` (`^1.2.0`) — token-driven Svelte primitives
+  and the first wave of Directus block layouts. `app.css` maps `--dv-*` brand
+  tokens onto the full `--bb-*` contract (including the four
+  `surface-raised`, `surface-inverse`, `fg-inverse`, `fg-inverse-muted`
+  tokens added in `1.2.0`). The seven generic blocks (`RichText`, `Stats`,
+  `CardGroup`, `Team`, `Timeline`, `Cta`, `ImageGallery`) are imported
+  through [`BlockRenderer`](src/lib/components/blocks/BlockRenderer.svelte);
+  Hero, FAQ, EventDetails, and RsvpForm stay local. See
+  [`bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md)
+  and [`extraction-strategy.md`](../bravobyte/.docs/architecture/extraction-strategy.md).
 - Future: `@bravobyte-org/data-core`
 
 ---

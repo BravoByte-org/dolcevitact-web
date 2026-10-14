@@ -33,6 +33,14 @@
 	--bb-color-fg-soft: var(--dv-color-charcoal-soft);
 	--bb-color-fg-muted: var(--dv-color-charcoal-mute);
 	--bb-color-surface: color-mix(in srgb, var(--dv-color-ivory) 60%, white 40%);
+	--bb-color-surface-raised: var(--dv-color-ivory-deep);
+	--bb-color-surface-inverse: var(--dv-color-charcoal);
+	--bb-color-fg-inverse: var(--dv-color-ivory);
+	--bb-color-fg-inverse-muted: color-mix(
+		in srgb,
+		var(--dv-color-ivory) 78%,
+		var(--dv-color-charcoal) 22%
+	);
 	--bb-color-border: color-mix(in srgb, var(--dv-color-sage) 20%, transparent);
 	--bb-color-focus: var(--dv-color-terracotta);
 
