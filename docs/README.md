@@ -1,4 +1,4 @@
-# .docs — Dolce Vita
+# docs — Dolce Vita
 
 Repo-local documentation.
 

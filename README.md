@@ -8,7 +8,7 @@ Stamford, Connecticut. Owned and operated by **BravoByteLLC**.
 > Brand architecture: branded house, paths-first. The current site _is_ the
 > Baby Circle; future offerings (e.g. cucina, online classes, newsletters) live
 > at sibling paths like `dolcevitact.com/cucina` rather than separate domains
-> or subdomains. See [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md).
+> or subdomains. See [`docs/adrs/0002-brand-architecture.md`](./docs/adrs/0002-brand-architecture.md).
 
 Part of the [BravoByte](../bravobyte-ai) ecosystem. This is a **delivery
 repo** — it composes shared modules and stays thin. See
@@ -74,7 +74,7 @@ static/                # robots.txt, og-image, favicon
   ISSUE_TEMPLATE/      # 11 templates copied from bravobyte platform/
   workflows/ci.yml     # CI (will refactor to call platform reusable workflow)
 .ai/                   # Repo-specific rules, plain markdown (personas/skills come from bravobyte-ai)
-.docs/                 # Architecture, ADRs, operations
+docs/                 # Architecture, ADRs, operations
 spec.md                # Single source of truth (≤500 lines)
 ```
 

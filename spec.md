@@ -3,7 +3,7 @@
 > **Owner:** BravoByteLLC for the Dolce Vita brand
 > **Domain:** https://dolcevitact.com (the `ct` suffix is a domain-availability quirk — the brand is "Dolce Vita")
 > **First chapter:** Dolce Vita Baby Circle
-> **Brand architecture:** branded house, paths-first (see [`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md))
+> **Brand architecture:** branded house, paths-first (see [`docs/adrs/0002-brand-architecture.md`](./docs/adrs/0002-brand-architecture.md))
 > **Status:** M0–M5 complete. Brand rename + ADR 0002 merged (PR #30). Canonical brand lockup (PR #33). **M6 Launch in progress** — M6a analytics (PR #34) + M6b SEO (PR #35) + M6c a11y/perf in flight; remaining: M6d (security headers) → M6e (release cut).
 > **Last Updated:** April 25, 2026
 
@@ -26,7 +26,7 @@ brand, introduces the Baby Circle, and converts visitors into RSVPs. It is
 architected as a branded-house portal: the homepage currently _is_ the Baby
 Circle; new offerings will live at sibling paths (`/cucina`, `/classes`, etc.)
 on the same domain rather than as separate sites — see
-[`.docs/adrs/0002-brand-architecture.md`](./.docs/adrs/0002-brand-architecture.md).
+[`docs/adrs/0002-brand-architecture.md`](./docs/adrs/0002-brand-architecture.md).
 
 **Tech stack:** SvelteKit 2 (Svelte 5 runes) · TypeScript · Tailwind v4 ·
 Vitest · Playwright · Directus (shared multi-site, key `dolcevita`) ·
@@ -41,7 +41,7 @@ Resend · Vercel.
   first wave of Directus block layouts. The app's `app.css` already maps
   `--dv-*` brand tokens onto the `--bb-*` contract; the dependency entry
   and import swaps land alongside the first block migration. See
-  [`bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/.docs/adrs/adr-005-frontend-core-token-contract.md).
+  [`bravobyte/docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/docs/adrs/adr-005-frontend-core-token-contract.md).
 - Future: `@bravobyte-org/data-core`
 
 ---
@@ -95,10 +95,10 @@ via the canonical `BrandLockup` component (M6, PR #33).
 | M-1 | GitHub workspace         | done        | —                                                                  | Repo, labels, templates, board, epics, stories                                                                                                                                                                                                                                                                                                                                   |
 | M0  | Foundation               | done        | [#1](https://github.com/BravoByte-org/dolcevitact-web/milestone/1) | Scaffold + Directus `dolcevita` site row + Vercel + DNS (DNS verified by founder)                                                                                                                                                                                                                                                                                                |
 | M1  | Shared content contracts | done        | [#2](https://github.com/BravoByte-org/dolcevitact-web/milestone/2) | `@bravobyte/types` extension shipped + consumed                                                                                                                                                                                                                                                                                                                                  |
-| M2  | Directus schema          | done        | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration applied + verified Apr 21 2026 (runlog: [`.docs/operations/m2-verification.md`](./.docs/operations/m2-verification.md))                                                                                                                                                                                                                                     |
+| M2  | Directus schema          | done        | [#3](https://github.com/BravoByte-org/dolcevitact-web/milestone/3) | Idempotent migration applied + verified Apr 21 2026 (runlog: [`docs/operations/m2-verification.md`](./docs/operations/m2-verification.md))                                                                                                                                                                                                                                       |
 | M3  | Design system            | done        | [#4](https://github.com/BravoByte-org/dolcevitact-web/milestone/4) | Tokens, decoratives, motion (PR #16)                                                                                                                                                                                                                                                                                                                                             |
-| M4  | Sections                 | done        | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | M4a block shell (PR #20), M4b sticky nav + drawer (PR #23), M4c full styling + a11y smoke (PR #26). Styling guide: [`.docs/architecture/block-styling-guide.md`](./.docs/architecture/block-styling-guide.md)                                                                                                                                                                    |
-| M5  | RSVP                     | done        | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | `?/rsvp` form action → Zod validate → Directus `rsvp_submissions` write → Resend notification + honeypot + success/error UI (PR #28). Brand rename promoted via PR #30 (recovery from stranded stack). Plan: [`.docs/architecture/m5-rsvp-plan.md`](./.docs/architecture/m5-rsvp-plan.md)                                                                                        |
+| M4  | Sections                 | done        | [#5](https://github.com/BravoByte-org/dolcevitact-web/milestone/5) | M4a block shell (PR #20), M4b sticky nav + drawer (PR #23), M4c full styling + a11y smoke (PR #26). Styling guide: [`docs/architecture/block-styling-guide.md`](./docs/architecture/block-styling-guide.md)                                                                                                                                                                      |
+| M5  | RSVP                     | done        | [#6](https://github.com/BravoByte-org/dolcevitact-web/milestone/6) | `?/rsvp` form action → Zod validate → Directus `rsvp_submissions` write → Resend notification + honeypot + success/error UI (PR #28). Brand rename promoted via PR #30 (recovery from stranded stack). Plan: [`docs/architecture/m5-rsvp-plan.md`](./docs/architecture/m5-rsvp-plan.md)                                                                                          |
 | M6  | Launch                   | in progress | [#7](https://github.com/BravoByte-org/dolcevitact-web/milestone/7) | Brand lockup (PR #33), M6a analytics (PR #34), M6b SEO (PR #35). M6c: full-page axe + keyboard smoke, non-blocking Google Fonts, `:focus-visible`, terracotta CTA contrast (AA), Lighthouse CI (`lighthouserc.cjs` + `perf:lhci`), CI job E2E a11y — addresses #12 part 2. Remaining: M6d `vercel.json` security headers (#13 part 1) → M6e release cut + RSVP smoke (#13 + #24) |
 
 GitHub Project board: [BravoByte/Dolce Vita Board](https://github.com/orgs/BravoByte-org/projects/4)
@@ -115,7 +115,7 @@ GitHub Project board: [BravoByte/Dolce Vita Board](https://github.com/orgs/Bravo
 - Editorial layout, generous whitespace, gentle motion only.
 - No childish, cartoonish, or generic-daycare visual cues.
 
-Full design notes: `.docs/architecture/design-system.md` (added in M3).
+Full design notes: `docs/architecture/design-system.md` (added in M3).
 
 ---
 
@@ -132,10 +132,10 @@ Full design notes: `.docs/architecture/design-system.md` (added in M3).
 
 ## 8. Architecture decisions
 
-| ADR  | Title                                                                                     | Status   |
-| ---- | ----------------------------------------------------------------------------------------- | -------- |
-| 0001 | [Dolce Vita delivery architecture](./.docs/adrs/0001-dolce-vita-architecture.md)          | Accepted |
-| 0002 | [Brand architecture: branded house, paths-first](./.docs/adrs/0002-brand-architecture.md) | Accepted |
+| ADR  | Title                                                                                    | Status   |
+| ---- | ---------------------------------------------------------------------------------------- | -------- |
+| 0001 | [Dolce Vita delivery architecture](./docs/adrs/0001-dolce-vita-architecture.md)          | Accepted |
+| 0002 | [Brand architecture: branded house, paths-first](./docs/adrs/0002-brand-architecture.md) | Accepted |
 
 ---
 
@@ -164,4 +164,4 @@ to Vercel production.
 Full playbook:
 [`bravobyte/.ai/playbooks/release-flow.md`](../bravobyte/.ai/playbooks/release-flow.md).
 Rationale:
-[ADR-006](../bravobyte/.docs/adrs/adr-006-org-release-standardization.md).
+[ADR-006](../bravobyte/docs/adrs/adr-006-org-release-standardization.md).

@@ -4,7 +4,7 @@
  * ──────────────────────────────────────────────────────────────────────
  *
  * Applies the naming hierarchy from ADR 0002
- * (.docs/adrs/0002-brand-architecture.md) to existing Directus content:
+ * (docs/adrs/0002-brand-architecture.md) to existing Directus content:
  *
  *   - Parent brand: "Dolce Vita"
  *   - Offering name: "Dolce Vita Baby Circle"

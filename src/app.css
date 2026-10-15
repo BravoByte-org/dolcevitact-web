@@ -24,7 +24,7 @@
  * without importing brand-specific values.
  *
  * Canonical mapping table:
- * `bravobyte/.docs/architecture/bravobyte-frontend-core-tokens.md`
+ * `bravobyte/docs/architecture/bravobyte-frontend-core-tokens.md`
  */
 :root {
 	--bb-color-primary: var(--dv-color-terracotta-deep);

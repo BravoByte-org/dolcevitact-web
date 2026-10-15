@@ -15,7 +15,7 @@ ships the marketing single-page application for [dolcevitact.com](https://dolcev
 ## Brand architecture: branded house, paths-first
 
 - The Dolce Vita parent brand owns the experience; new offerings live at sibling paths (`dolcevitact.com/cucina`, `/classes`, etc.) on the same domain rather than separate subdomains or domains.
-- See [`.docs/adrs/0002-brand-architecture.md`](../../.docs/adrs/0002-brand-architecture.md) for rationale and growth phases.
+- See [`docs/adrs/0002-brand-architecture.md`](../../docs/adrs/0002-brand-architecture.md) for rationale and growth phases.
 - Decision tree before adding a new offering:
   1. Is it the same audience and same brand promise? → new path on `dolcevitact.com`.
   2. Different audience, same parent brand? → still new path, but with its own landing.
