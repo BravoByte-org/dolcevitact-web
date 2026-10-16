@@ -7,7 +7,7 @@
 	 *     ─── ♥ ───         ← thin gold rule + small terracotta heart
 	 *
 	 * Implements the verbatim founder spec captured in
-	 * `.docs/architecture/brand-logo-spec.md` (closes #32).
+	 * `docs/architecture/brand-logo-spec.md` (closes #32).
 	 *
 	 * The 1.0× / 0.5× ratio between title and subtitle is the only
 	 * inviolable rule. All other sizes — gaps, divider, heart — are

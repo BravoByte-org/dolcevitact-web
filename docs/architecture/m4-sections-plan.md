@@ -3,7 +3,7 @@
 > **Status:** active, in progress as of April 21, 2026
 > **Milestone:** [M4](https://github.com/BravoByte-org/dolcevitact-web/milestone/5)
 > **Precedes:** M5 (RSVP form action + Resend)
-> **Inherits:** M2 Directus schema (`.docs/operations/m2-verification.md`) + M3 design system (tokens, decoratives, motion)
+> **Inherits:** M2 Directus schema (`docs/operations/m2-verification.md`) + M3 design system (tokens, decoratives, motion)
 
 M4 turns the 9 M2 page blocks into real Svelte components, registers them
 in a `BlockRenderer`, and replaces the layout's temporary header ribbon
@@ -178,12 +178,12 @@ Before marking M4 done in `spec.md`:
 - [ ] `BlockRenderer` falls back silently when Directus returns an empty or partial block set (existing M3 fallback preserved)
 - [ ] SiteNav is keyboard-navigable, focus-visible outlines match design tokens, drawer passes axe-core
 - [ ] No inline Tailwind utility classes in any block component markup (per `tailwind-svelte.md`)
-- [ ] `.docs/operations/cms-triage.md` (to be added to DV) or `spec.md` lists any content TODOs left for the editor
+- [ ] `docs/operations/cms-triage.md` (to be added to DV) or `spec.md` lists any content TODOs left for the editor
 
 ## 7. Story sequence (recommended PR order)
 
 1. **M4a-1 — "BlockRenderer shell + types"** (tiny, unblocks the rest)
-2. **M4a-2 — "Shared-candidate blocks (hero, rich_text, card_group, timeline, team) with DV branding"** — largest PR, paired with a `.docs/architecture/block-styling-guide.md` that records the CSS-token mapping
+2. **M4a-2 — "Shared-candidate blocks (hero, rich_text, card_group, timeline, team) with DV branding"** — largest PR, paired with a `docs/architecture/block-styling-guide.md` that records the CSS-token mapping
 3. **M4a-3 — "DV-first blocks (event_details, rsvp_form shell, faq)"** — no form submit yet
 4. **M4b — "Sticky editorial nav + mobile drawer + footer polish"**
 5. **M4 close — spec bump, re-audit display-metadata on the three DV-first collections (cross-reference [`bravobyte-ai/rules/directus-collection-display.md`](../../../bravobyte-ai/rules/directus-collection-display.md))**

@@ -30,7 +30,7 @@
 		<!--
 			Canonical brand lockup sits above the page H1. The lockup is the
 			brand identity; the H1 below remains the descriptive headline.
-			See `.docs/architecture/brand-logo-spec.md`.
+			See `docs/architecture/brand-logo-spec.md`.
 		-->
 		<div class="dv-hero__lockup">
 			<BrandLockup variant="hero" />
