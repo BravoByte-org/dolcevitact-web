@@ -68,6 +68,6 @@ SvelteKit + Tailwind + TypeScript + Directus, already in production at
 
 ## References
 
-- Workspace [`spec.md`](../../../spec.md)
-- BravoByte [`new-client-repo.md`](../../../bravobyte-ai/playbooks/new-client-repo.md) playbook
+- BravoByte org spec: `spec.md` in the `bravobyte-meta` repo
+- BravoByte playbook: `playbooks/new-client-repo.md` in the `bravobyte-ai` repo
 - Plan: `dolcevitact-web-launch_*.plan.md`

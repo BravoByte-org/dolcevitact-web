@@ -45,8 +45,8 @@ breaks in prod" class of bug.
    `'$t:public_label'` and prints a `⚠` warning if neither matches
    (parallel to the existing Published Content Reader warn at line
    723-727).
-3. The Apr 21 Directus permissions rule at
-   [`bravobyte-ai/rules/directus-collection-permissions.md`](../../../bravobyte-ai/rules/directus-collection-permissions.md)
+3. The Apr 21 Directus permissions rule (now skill
+   `stack-directus-permissions` in the `bravobyte-ai` repo)
    gained a "Looking up system policies by name" section codifying the
    pattern — future migration scripts on other clients inherit the fix.
 
@@ -73,7 +73,7 @@ breaks in prod" class of bug.
 
 - **en-US / client-locale field translations** — per
   `spec.md §7 Out of scope for v1`, Dolce Vita is English-only at launch.
-  The rule at `bravobyte-ai/rules/directus-collection-display.md` still
+  Skill `stack-directus-display` (in the `bravobyte-ai` repo) still
   expects translations on multi-locale clients; it's correctly skipped
   here and should be revisited if/when a second locale is added.
 
@@ -88,5 +88,5 @@ via the Directus admin UI** before M5 goes live.
 ## Cross-references
 
 - Runbook: [`./directus-migration.md`](./directus-migration.md)
-- Rules: [`bravobyte-ai/rules/directus-collection-permissions.md`](../../../bravobyte-ai/rules/directus-collection-permissions.md) · [`bravobyte-ai/rules/directus-collection-display.md`](../../../bravobyte-ai/rules/directus-collection-display.md)
+- Rules: skills `stack-directus-permissions` and `stack-directus-display` (`plugins/stack/skills/` in the `bravobyte-ai` repo)
 - ADR: [`../adrs/0001-dolce-vita-architecture.md`](../adrs/0001-dolce-vita-architecture.md)

@@ -10,7 +10,7 @@ Stamford, Connecticut. Owned and operated by **BravoByteLLC**.
 > at sibling paths like `dolcevitact.com/cucina` rather than separate domains
 > or subdomains. See [`docs/adrs/0002-brand-architecture.md`](./docs/adrs/0002-brand-architecture.md).
 
-Part of the [BravoByte](../bravobyte-ai) ecosystem. This is a **delivery
+Part of the BravoByte ecosystem. This is a **delivery
 repo** — it composes shared modules and stays thin. See
 [`spec.md`](./spec.md) for current status.
 
@@ -82,7 +82,8 @@ spec.md                # Single source of truth (≤500 lines)
 
 ## Workflow
 
-This repo participates in the [BravoByte workflow](../bravobyte-ai/spec.md):
+This repo participates in the BravoByte workflow (`spec.md` in the
+`bravobyte-meta` repo):
 Strategize → Architect → Verify plan → Build → Verify code → Capture →
 Update.
 
@@ -91,8 +92,8 @@ Issues are tracked on the
 Work follows the milestones M-1 → M6 documented in
 [`spec.md`](./spec.md#5-milestones).
 
-PRs use squash-merge with conventional titles per the
-[git-history-and-merge-policy](../bravobyte-ai/playbooks/git-history-and-merge-policy.md).
+PRs use squash-merge with conventional titles per
+`playbooks/git-history-and-merge-policy.md` in the `bravobyte-ai` repo.
 
 ---
 

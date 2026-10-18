@@ -41,14 +41,14 @@ Resend · Vercel.
   first wave of Directus block layouts. The app's `app.css` already maps
   `--dv-*` brand tokens onto the `--bb-*` contract; the dependency entry
   and import swaps land alongside the first block migration. See
-  [`bravobyte/docs/adrs/adr-005-frontend-core-token-contract.md`](../bravobyte/docs/adrs/adr-005-frontend-core-token-contract.md).
+  `docs/adrs/adr-005-frontend-core-token-contract.md` in the `bravobyte` repo.
 - Future: `@bravobyte-org/data-core`
 
 ---
 
 ## 2. Workflow
 
-This repo follows the [BravoByte workflow](../bravobyte-ai/spec.md):
+This repo follows the BravoByte workflow (`spec.md` in the `bravobyte-meta` repo):
 Strategize → Architect → Verify plan → Build → Verify code → Capture → Update.
 
 Personas, rules, and playbooks are inherited from the workspace-level
@@ -161,7 +161,7 @@ to the reusable workflow in the `bravobyte` monorepo and opens a
 that PR tags the version, creates a GitHub Release, and promotes the build
 to Vercel production.
 
-Full playbook:
-[`bravobyte/.ai/playbooks/release-flow.md`](../bravobyte/.ai/playbooks/release-flow.md).
-Rationale:
-[ADR-006](../bravobyte/docs/adrs/adr-006-org-release-standardization.md).
+Full playbook: skill `stack-release`
+(`plugins/stack/skills/stack-release/` in the `bravobyte-ai` repo).
+Rationale: ADR-006,
+`docs/adrs/adr-006-org-release-standardization.md` in the `bravobyte` repo.

@@ -3,8 +3,8 @@
 **Scope**: Authoring convention for every Svelte component under
 `src/lib/components/blocks/*` and shared UI primitives on this site.
 
-This guide operationalises the
-[`tailwind-svelte.md`](../../../bravobyte-ai/rules/tailwind-svelte.md) rule
+This guide operationalises the Tailwind + Svelte rule, now
+skill `stack-tailwind-svelte` (`plugins/stack/skills/stack-tailwind-svelte/` in the `bravobyte-ai` repo),
 for Dolce Vita. Same rule, cookbook form.
 
 ---
@@ -121,4 +121,5 @@ Lighthouse CI: `lighthouserc.cjs` + `pnpm perf:lhci` (runs a production
 When a block's `@apply` set becomes generic across projects
 (Starway + Dolce Vita + future client), lift the rule into
 `bravobyte-frontend-core` as a shared component and keep only the
-brand-token override here. See `bravobyte-ai/rules/reusability.md`.
+brand-token override here. See the reuse classification in skill `workflow-persona-orion`
+(`plugins/workflow/skills/workflow-persona-orion/` in the `bravobyte-ai` repo).
