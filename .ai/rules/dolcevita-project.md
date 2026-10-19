@@ -58,7 +58,7 @@ ships the marketing single-page application for [dolcevitact.com](https://dolcev
 
 - Directus is the single source of content. Site key: `dolcevita`. Site-scoped queries only — never leak Starway content into Dolce Vita and vice-versa.
 - RSVP submissions go to the Directus `rsvp_submissions` collection (created public, never publicly readable) and trigger a Resend notification to `RSVP_NOTIFY_EMAIL`.
-- Always apply the canonical directus-collection-permissions rule (`rules/directus-collection-permissions.md` in the `bravobyte-ai` repo) when creating new collections — ship the permission seed in the same change.
+- Always apply the canonical directus-collection-permissions rule (skill `stack-directus-permissions`, `plugins/stack/skills/stack-directus-permissions/` in the `bravobyte-ai` repo) when creating new collections — ship the permission seed in the same change.
 
 ## Workflow
 

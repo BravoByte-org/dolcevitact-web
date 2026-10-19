@@ -9,8 +9,8 @@ M4 turns the 9 M2 page blocks into real Svelte components, registers them
 in a `BlockRenderer`, and replaces the layout's temporary header ribbon
 with an editorial sticky nav + mobile drawer. This document is the
 architecture + story breakdown; implementation will be split across
-dedicated stories / PRs per [`bravobyte-ai/git-history.md`](../../../bravobyte-ai/rules/git-history.md)
-(one story per PR).
+dedicated stories / PRs per skill `workflow-persona-forge`
+(`plugins/workflow/skills/workflow-persona-forge/` in the `bravobyte-ai` repo; one story per PR).
 
 ## 1. Scope
 
@@ -135,8 +135,8 @@ src/lib/components/
   decor/                          — unchanged (Grain, GoldRule, OliveBranch from M3)
 ```
 
-All components use **scoped `<style>` with `@apply`** per
-[`bravobyte-ai/rules/tailwind-svelte.md`](../../../bravobyte-ai/rules/tailwind-svelte.md)
+All components use **scoped `<style>` with `@apply`** per skill
+`stack-tailwind-svelte` (`plugins/stack/skills/stack-tailwind-svelte/` in the `bravobyte-ai` repo)
 and **nested BEM** per the Starway convention — no inline utility
 classes in the rendered markup.
 
@@ -186,7 +186,7 @@ Before marking M4 done in `spec.md`:
 2. **M4a-2 — "Shared-candidate blocks (hero, rich_text, card_group, timeline, team) with DV branding"** — largest PR, paired with a `docs/architecture/block-styling-guide.md` that records the CSS-token mapping
 3. **M4a-3 — "DV-first blocks (event_details, rsvp_form shell, faq)"** — no form submit yet
 4. **M4b — "Sticky editorial nav + mobile drawer + footer polish"**
-5. **M4 close — spec bump, re-audit display-metadata on the three DV-first collections (cross-reference [`bravobyte-ai/rules/directus-collection-display.md`](../../../bravobyte-ai/rules/directus-collection-display.md))**
+5. **M4 close — spec bump, re-audit display-metadata on the three DV-first collections (cross-reference skill `stack-directus-display` in the `bravobyte-ai` repo)**
 
 After M4 closes, M5 picks up the `/reserve` form action with the
 now-present (thanks to the M2 verification Public-policy fix) anonymous
@@ -199,4 +199,4 @@ now-present (thanks to the M2 verification Public-policy fix) anonymous
 - Runbook (migration): [`../operations/directus-migration.md`](../operations/directus-migration.md)
 - ADR: [`../adrs/0001-dolce-vita-architecture.md`](../adrs/0001-dolce-vita-architecture.md)
 - Starway inheritance targets: `starwaytrasporti-web/src/lib/components/blocks/` (canonical BlockRenderer shape)
-- Shared rules: [`../../../bravobyte-ai/rules/tailwind-svelte.md`](../../../bravobyte-ai/rules/tailwind-svelte.md), [`../../../bravobyte-ai/rules/directus-collection-display.md`](../../../bravobyte-ai/rules/directus-collection-display.md), [`../../../bravobyte-ai/rules/directus-collection-permissions.md`](../../../bravobyte-ai/rules/directus-collection-permissions.md), [`../../../bravobyte-ai/rules/reusability.md`](../../../bravobyte-ai/rules/reusability.md)
+- Shared rules, now plugin skills in the `bravobyte-ai` repo (`plugins/<plugin>/skills/<skill>/`): `stack-tailwind-svelte`, `stack-directus-display`, `stack-directus-permissions`, and `workflow-persona-orion` (reuse classification)

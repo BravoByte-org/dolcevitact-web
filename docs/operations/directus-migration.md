@@ -152,7 +152,6 @@ dependent `directus_permissions` rows, which is what you want.
 
 ## Cross-references
 
-- Shared rule: [`bravobyte-ai/rules/directus-collection-permissions.md`](../../../bravobyte-ai/rules/directus-collection-permissions.md)
-- Shared rule: [`bravobyte-ai/rules/directus-collection-display.md`](../../../bravobyte-ai/rules/directus-collection-display.md)
-- Rule: `rules/directus-collection-permissions.md` in the `bravobyte-ai` repo (not vendored into this repo; inherits the workspace rule)
+- Shared rule: skill `stack-directus-permissions` (`plugins/stack/skills/stack-directus-permissions/` in the `bravobyte-ai` repo; not vendored into this repo)
+- Shared rule: skill `stack-directus-display` (`plugins/stack/skills/stack-directus-display/` in the `bravobyte-ai` repo)
 - ADR: [`docs/adrs/0001-dolce-vita-architecture.md`](../adrs/0001-dolce-vita-architecture.md)
